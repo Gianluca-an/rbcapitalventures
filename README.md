@@ -1,89 +1,80 @@
-# RB Capital Ventures — Website ("Still Waters")
+# RB Capital Ventures — Website
 
-A redesigned marketing site for **RB Capital Ventures Ltd.**, a global investment and
-project-financing firm. The creative direction is **"Still Waters"** — *still waters run deep*:
-pale-blue air, calm reflective water, and a single luminous glass sphere. Premium and alive,
-never loud — confidence expressed as calm.
+A discreet, institutional website for **RB Capital Ventures Ltd.**, a private investment
+platform and family-office capital partner. Built to the client brief: the restraint, pacing
+and content hierarchy of a private investment office (reference: Samson Investment Partners),
+with a **Washington D.C. authority / Baltimore character** visual identity.
 
-The opening page is a **WebGL glass orb** (real transmission/refraction) floating over calm
-water; from there the visitor descends through one continuous story into the full site.
-
-**Design language:** white / light-blue canvas · deep-navy ink · one aqua spark. Display type
-in **Fraunces** (editorial serif, roman + italic), UI/body in **Hanken Grotesk**.
+**Design language:** parchment · warm stone · deep navy · charcoal, with aged-brass and oxblood
+accents. **Bodoni Moda** (editorial serif) + **Libre Franklin** (Federal grotesque). Full-bleed
+photography, sharp corners, generous whitespace, minimal/premium motion.
 
 ## Stack
 
 - **React 18** + **TypeScript**, **Vite 6**
-- **Three.js** + **@react-three/fiber** + **@react-three/drei** — the glass-orb hero
-  (`MeshTransmissionMaterial`, procedural `Environment`/`Lightformer`, `Sparkles`)
-- **Framer Motion** — scroll reveals, hero motion, portfolio filtering
-- **Lenis** — smooth scrolling (auto-disabled under `prefers-reduced-motion`)
+- **React Router 7** — multi-page (`/`, `/about`, `/asset-classes`, `/sectors`,
+  `/investment-criteria`, `/contact`); the logo links Home.
+- **Framer Motion** — restrained scroll reveals · **Lenis** — smooth scrolling
 - Hand-authored CSS design system (no UI framework)
-
-The 3D scene is **code-split** (loaded lazily) and falls back to a CSS orb when WebGL is
-unavailable or the visitor prefers reduced motion.
 
 ## Getting started
 
 ```bash
 npm install
-npm run dev        # local dev server
-npm run build      # production build -> dist/  (standard, code-split)
-npm run preview    # preview the production build
-SINGLEFILE=1 npm run build   # one self-contained dist/index.html
+npm run dev      # local dev server
+npm run build    # production build -> dist/
+npm run preview  # preview the production build
 ```
 
 ## Deployment
 
-`npm run build` emits a fully static site to `dist/` — host it anywhere (Netlify, Vercel,
-Cloudflare Pages, S3 + CloudFront, GitHub Pages, plain Nginx). No server required.
+`npm run build` emits a static site to `dist/`. Config is included:
+- **`netlify.toml`** — build command + publish dir (one-click import on Netlify)
+- **`public/_redirects`** — SPA fallback so deep links (`/about`, `/sectors`, …) resolve
 
-## Project structure
+Cloudflare Pages: build command `npm run build`, output `dist`, and add an equivalent SPA
+fallback (`/* /index.html 200`).
+
+## Photography (client to provide)
+
+The site is photography-led. Every image is a **`<Photo>`** slot rendering a clearly-labelled
+duotone placeholder (with the intended subject captioned) until real assets are supplied. To drop
+in a real image, pass `src` (and `alt`) to the `Photo` in the relevant page/component — no layout
+changes needed. Suggested subjects are captioned on each placeholder (Federal architecture,
+harbour infrastructure, principal portraits, geographic-reach map, etc.).
+
+## Content
+
+All copy lives in **`src/data/content.ts`** (hero, pillars, about, approach, leadership, asset
+classes, sectors, investment criteria, geography, contact, offices). Update that one file and the
+site follows. Copy is taken verbatim from the client brief.
+
+## Structure
 
 ```
 src/
-  main.tsx                 App entry (mounts React, imports global CSS)
-  App.tsx                  Section composition + smooth scroll
-  data/content.ts          ← ALL site copy & portfolio data (single source of truth)
-  hooks/useSmoothScroll.ts Lenis integration + anchor-link handling
-  three/
-    Orb.tsx                WebGL glass-orb hero scene (R3F)
-    StaticOrb.tsx          CSS fallback orb
-    hasWebGL.ts            capability + reduced-motion detection
+  main.tsx                 Entry — BrowserRouter, scroll restoration off
+  App.tsx                  Routes
+  data/content.ts          ← ALL copy & data
+  hooks/useSmoothScroll.ts Lenis
   components/
-    Logo.tsx               RB sphere mark + wordmark
-    Nav.tsx                Sticky nav (transparent → solid on scroll)
-    Reveal.tsx             Scroll-into-view fade/rise wrapper
-    Footer.tsx
-  sections/
-    Hero.tsx               Opening page — the glass orb + positioning statement
-    About.tsx              The firm + values
-    Opportunity.tsx        Editorial stat block ($690M+ / 15 / 12 / 4)
-    Approach.tsx           The three disciplines (sequence)
-    Criteria.tsx           Investment criteria
-    Sectors.tsx            12 sectors of focus
-    Portfolio.tsx          Filterable project grid (15 mandates)
-    Globe.tsx              "Global Reach" — the dark contrast beat
-    Contact.tsx            Contact details + form
-  styles/
-    hero.css               Opening-page styles
-    site.css               Nav, sections, footer styles
+    Layout.tsx             Nav + Outlet + Footer + scroll-to-top on route change
+    Nav.tsx  Footer.tsx  Logo.tsx  icons.tsx
+    Photo.tsx              Image slot / labelled placeholder
+    PageHero.tsx           Full-bleed interior page hero
+    Reveal.tsx             Restrained scroll reveal
+  pages/
+    Home.tsx  About.tsx  AssetClasses.tsx  Sectors.tsx  Criteria.tsx  Contact.tsx
+  styles/site.css          Components + pages
 ```
-
-## Editing content
-
-All copy, stats, criteria, sectors and portfolio entries live in **`src/data/content.ts`**.
-Update that one file and the whole site follows.
 
 ## Notes & next steps
 
-- **Team bios** — intentionally deferred; a leadership section can slot in after About.
-- **Contact form** — currently opens the visitor's mail client via `mailto:` (no backend).
-  Wire to a form service (Formspree, Basin) or an API endpoint for production.
-- **Headline stats** are framed as *project / transaction value*, not deployed capital or AUM.
-- **Accessibility** — honors `prefers-reduced-motion` (3D animation + smooth scroll disabled);
-  keyboard-focusable controls; CSS-orb fallback with no WebGL.
-
-## Content source
-
-Copy and portfolio data were carried over from the firm's existing site and restructured.
+- **Investment Leadership** (About page) — Rosalyn Bronstein, Royan Khayri, Kevin Wilson,
+  Ludmila Pirogova; bios reveal on hover/click. Portraits are placeholders awaiting supply.
+- **Contact form** — front-end only. Wire to **Netlify Forms** or **Formspree** for secure
+  delivery, PDF handling and spam protection before launch.
+- **Geography map** — a placeholder slot; can be replaced with a proper map graphic.
+- Per brief: **no public portfolio / case studies, no oversized numbers, no icon grids.**
+- SEO/accessibility: per-page `<title>`/description can be added with `react-helmet-async`
+  when desired; images carry alt text via the `Photo` `alt`/`caption`.

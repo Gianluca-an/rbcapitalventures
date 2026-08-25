@@ -1,258 +1,296 @@
 // ---------------------------------------------------------------------------
-// RB Capital Ventures — content model
-// All copy sourced from the client's existing site (rbcapitalventures.com).
-// Kept in one place so the whole site is content-driven and easy to update.
+// RB Capital Ventures — content model (all copy per the client brief)
+// Photographic slots carry a `caption` describing the intended subject so the
+// placeholder reads correctly and the real image drops straight in.
 // ---------------------------------------------------------------------------
 
 export const company = {
   name: "RB Capital Ventures",
   legalName: "RB Capital Ventures Ltd.",
-  tagline: ["Independent Critical Thinking", "Strategic Partnerships", "Systematic Execution"],
-  promise: "Transforming complex opportunities into enduring value.",
   email: "info@rbcapitalventures.com",
-  address: {
-    line1: "82, Cherokee Road, P.O. Box 908",
-    line2: "Providenciales, Turks and Caicos Islands",
-  },
+  linkedin: "https://www.linkedin.com/company/rb-capital-ventures",
   registration: "TC.054296",
+  offices: {
+    registered: {
+      label: "Registered Office",
+      lines: ["RB Capital Ventures Ltd.", "82 Cherokee Road, P.O. Box 908", "Providenciales", "Turks and Caicos Islands"],
+      note: "Registration and Financial Services Number: TC.054296",
+    },
+    us: {
+      label: "U.S. Correspondence",
+      lines: ["P.O. Box 30", "10421 Stevenson Road", "Stevenson, Maryland 21153", "United States"],
+    },
+  },
+  presence: ["Washington D.C.", "Baltimore, MD", "San Francisco, CA", "Toronto, Canada", "London, UK"],
   year: 2026,
 };
 
 export const nav = [
-  { label: "Home", href: "#home" },
-  { label: "About", href: "#about" },
-  { label: "Approach", href: "#approach" },
-  { label: "Criteria", href: "#criteria" },
-  { label: "Portfolio", href: "#portfolio" },
-  { label: "Contact", href: "#contact" },
+  { label: "About", href: "/about" },
+  { label: "Asset Classes", href: "/asset-classes" },
+  { label: "Sectors", href: "/sectors" },
+  { label: "Investment Criteria", href: "/investment-criteria" },
+  { label: "Contact", href: "/contact" },
 ];
 
-// Headline metrics derived from the portfolio + criteria. Framed as project /
-// transaction value, not deployed capital or AUM.
-export const stats = [
-  { value: "$690M+", label: "Aggregate project value across active mandates" },
-  { value: "15", label: "Mandates worldwide" },
-  { value: "12", label: "Sectors of focus" },
-  { value: "4", label: "Continents" },
-];
+// ---------------------------------------------------------------- Home
+export const home = {
+  hero: {
+    eyebrow: "Private Investment Platform",
+    title: ["Private Capital.", "Long-Term Perspective."],
+    caption: "Federal architecture — Washington, D.C.",
+    body:
+      "RB Capital Ventures is a private investment platform and family-office capital partner focused on growth equity, direct investments and select project opportunities across global private markets.",
+    body2:
+      "We partner with established businesses, management teams and project sponsors at important stages of growth — including select opportunities approaching pre-IPO, strategic investment and M&A.",
+  },
+  pillars: {
+    eyebrow: "How We Partner",
+    heading: "Three principles behind every investment.",
+    items: [
+      {
+        title: "Growth Equity",
+        body: "Backing established and scaling businesses through their next phase of institutional growth.",
+      },
+      {
+        title: "Direct Investment",
+        body: "Investing directly into select private companies and projects with compelling fundamentals and long-term potential.",
+      },
+      {
+        title: "Long-Term Partnerships",
+        body: "Working alongside management teams, family offices and institutional capital with alignment and a long-term perspective.",
+      },
+    ],
+  },
+  sectorsTeaser: {
+    eyebrow: "Selected Areas of Interest",
+    heading: "A broad but selective mandate.",
+    body:
+      "We invest across sectors where we believe durable, long-term structural opportunities exist — from infrastructure and energy to healthcare, technology and real assets.",
+    caption: "Harbour infrastructure — Baltimore, Maryland",
+  },
+  aboutTransition: {
+    eyebrow: "About RBCV",
+    heading: "Independent thinking. Aligned capital.",
+    body:
+      "A private investment platform operating within a broader family-office and private-capital ecosystem, investing with a long-term perspective where strong fundamentals, experienced leadership and clear strategic potential converge.",
+  },
+  contactCta: {
+    heading: "Start a conversation.",
+    body: "We welcome enquiries from management teams, project sponsors, family offices, institutional investors and strategic partners.",
+  },
+};
 
-export const pillars = [
-  {
-    title: "Independent Critical Thinking",
-    body: "We apply rigorous, unbiased analysis to every opportunity, challenging conventional wisdom and uncovering value where others see complexity.",
-  },
-  {
-    title: "Strategic Business Analysis",
-    body: "Our deep sector expertise and analytical frameworks enable us to identify sustainable competitive advantages and long-term value creation pathways.",
-  },
-  {
-    title: "Systematic Execution",
-    body: "Disciplined processes and proven methodologies ensure consistent delivery from due diligence through value realization and exit.",
-  },
-];
-
+// ---------------------------------------------------------------- About
 export const about = {
-  eyebrow: "About the firm",
-  heading: "A global investment and project-financing partner.",
-  body: "RB Capital Ventures Ltd. is a global investment and project-financing firm dedicated to building lasting partnerships through trust, transparency, and inclusiveness. We believe in the power of independent critical thinking, strategic analysis, and systematic execution to transform complex opportunities across diverse sectors into sustainable value.",
-  values: [
+  hero: {
+    eyebrow: "About",
+    title: ["Independent Thinking.", "Aligned Capital."],
+    caption: "Neoclassical colonnade — Washington, D.C.",
+  },
+  body: [
+    "RB Capital Ventures is a private investment platform operating within a broader family-office and private-capital ecosystem. We work alongside management teams, project sponsors, family offices and institutional capital partners across select private-market opportunities.",
+    "We invest with a long-term perspective, seeking situations where strong fundamentals, experienced leadership and clear strategic potential converge. Our approach combines independent thinking, disciplined analysis and flexible capital.",
+    "We favour long-term relationships and selectively partner with businesses and projects where our capital, experience and network can contribute meaningfully to growth and value creation.",
+  ],
+  approach: {
+    eyebrow: "Our Approach",
+    items: [
+      { title: "Long-Term Perspective", body: "We seek to build enduring partnerships and create value over time." },
+      {
+        title: "Selective Investing",
+        body: "We pursue a limited number of opportunities where there is strong alignment between capital, management and strategy.",
+      },
+      {
+        title: "Flexible Capital",
+        body: "Our structure allows us to consider opportunities across different investment stages and transaction structures.",
+      },
+    ],
+  },
+};
+
+export const leadership = {
+  eyebrow: "Investment Leadership",
+  heading: "Experienced stewardship.",
+  body: "A senior team with deep experience across private markets, real assets and cross-border investment.",
+  people: [
     {
-      title: "Excellence",
-      body: "We maintain the highest standards in every aspect of our work, from initial analysis to final execution.",
+      name: "Rosalyn Bronstein",
+      title: "Managing Director",
+      bio: "Rosalyn Bronstein is Managing Director of RB Capital Ventures and leads the firm's investment strategy and activities across private markets. She brings more than three decades of investment, management consulting and international business experience, with particular expertise across energy, infrastructure, environmental markets and cross-border investment.",
+      linkedin: "https://www.linkedin.com/in/rosalyn-bronstein/",
+      email: "",
     },
     {
-      title: "Alignment",
-      body: "Our success is measured by the success of our partners. We align interests to create win-win outcomes.",
+      name: "Royan Khayri",
+      title: "Senior Vice-President",
+      bio: "Roy Khayri is Senior Vice-President at RB Capital Ventures, where he focuses on the origination, evaluation and execution of growth equity and private-market investments. He is a member of the firm's Investment Committee and works across commercial assessment, financial analysis, transaction execution, portfolio oversight and relationships with institutional and JV partners across international markets.",
+      linkedin: "https://www.linkedin.com/in/royankhayri/",
+      email: "roy@rbcapitalventures.com",
     },
     {
-      title: "Flexible Capital",
-      body: "We provide tailored financing solutions that adapt to the unique needs of each opportunity and partner.",
+      name: "Kevin Wilson",
+      title: "Senior Vice-President",
+      bio: "Kevin Wilson serves as Senior Vice-President at RB Capital Ventures, supporting the firm's investment activities through expertise in business structuring, valuation, capital strategy and transaction execution. He brings extensive experience across professional services, private business, real estate, energy and corporate transactions.",
+      linkedin: "",
+      email: "",
+    },
+    {
+      name: "Ludmila Pirogova",
+      title: "Senior Vice-President",
+      bio: "Ludmila Pirogova serves as a Senior Vice-President at RB Capital Ventures, working across investment strategy, capital governance and institutional decision-making. She brings more than two decades of experience across financial services, infrastructure, energy, mining and technology-enabled assets, with particular expertise in investment governance, risk and complex asset environments.",
+      linkedin: "",
+      email: "",
     },
   ],
 };
 
+// ---------------------------------------------------------------- Asset Classes
+export const assetClasses = {
+  hero: {
+    eyebrow: "How We Invest",
+    title: ["Asset Classes"],
+    caption: "Limestone façade, Federal detail — Washington, D.C.",
+  },
+  intro:
+    "RB Capital Ventures invests selectively across private markets, with a focus on opportunities where patient capital and strategic alignment can support the next stage of value creation.",
+  items: [
+    {
+      title: "Growth Equity",
+      body: "Growth capital for established and scaling businesses seeking to accelerate expansion, strengthen market position or prepare for their next institutional stage.",
+      caption: "Commercial architecture",
+    },
+    {
+      title: "Direct Investments",
+      body: "Direct investment into private companies and projects where we see compelling fundamentals, aligned management and long-term value creation potential.",
+      caption: "Boardroom / interior",
+    },
+    {
+      title: "Pre-IPO & Strategic Growth",
+      body: "Select private companies approaching significant institutional milestones, including potential public-market entry, strategic investment, consolidation or acquisition.",
+      caption: "Financial district",
+    },
+    {
+      title: "Project & Real Asset Investments",
+      body: "Investment into established and development-stage projects where feasibility, commercial fundamentals and execution pathways have been demonstrated.",
+      caption: "Infrastructure / real asset",
+    },
+    {
+      title: "Co-Investments & Joint Ventures",
+      body: "We selectively invest alongside family offices, institutional partners, operators and other aligned capital partners.",
+      caption: "Harbour / trade",
+    },
+  ],
+};
+
+// ---------------------------------------------------------------- Sectors
+export const sectors = {
+  hero: {
+    eyebrow: "Sectors",
+    title: ["Areas of Interest"],
+    caption: "Chesapeake harbour, industrial heritage — Baltimore, MD",
+  },
+  intro:
+    "RB Capital Ventures maintains a broad but selective investment mandate across sectors where we believe long-term structural opportunities exist.",
+  items: [
+    {
+      title: "Infrastructure, Commodities & Energy",
+      body: "Including conventional energy (oil & gas), infrastructure-led opportunities and the sale and purchase of precious metals.",
+      caption: "Energy & infrastructure",
+    },
+    {
+      title: "Renewable Energy & Clean Technology",
+      body: "Energy transition, clean technology and commercially proven renewable platforms.",
+      caption: "Renewable energy",
+    },
+    {
+      title: "Healthcare & Life Sciences",
+      body: "Healthcare, MedTech and biotechnology companies with clear commercial pathways.",
+      caption: "Life sciences",
+    },
+    {
+      title: "Industrial & Manufacturing",
+      body: "Industrial businesses, data centres, manufacturing platforms and enabling infrastructure.",
+      caption: "Industrial & manufacturing",
+    },
+    {
+      title: "Technology, AI & Digital Infrastructure",
+      body: "Technology, artificial intelligence, cloud and digital-infrastructure projects.",
+      caption: "Digital infrastructure",
+    },
+    {
+      title: "Real Estate & Hospitality",
+      body: "Select real estate, hospitality and mixed-use opportunities with strong underlying fundamentals.",
+      caption: "Real estate & hospitality",
+    },
+  ],
+  note:
+    "We also consider opportunities outside these sectors where there is a compelling strategic rationale and strong alignment with our investment approach.",
+};
+
+// ---------------------------------------------------------------- Investment Criteria
 export const criteria = {
-  eyebrow: "Investment criteria",
-  heading: "Where we engage.",
-  groups: [
+  hero: {
+    eyebrow: "Investment Criteria",
+    title: ["What Makes an", "Opportunity Relevant"],
+    caption: "Federal symmetry — Washington, D.C.",
+  },
+  intro:
+    "We focus on businesses and projects with established fundamentals and a clear pathway to institutional growth.",
+  items: [
     {
-      title: "Company Size",
-      items: ["Revenue: $10M – $500M+", "EBITDA: $2M – $100M+", "Enterprise Value: $15M – $750M+"],
+      title: "Stage",
+      body: "Growth-stage and established private companies, alongside projects that have progressed beyond initial concept or feasibility.",
     },
     {
-      title: "Transaction Types",
-      items: ["Growth Equity", "Buyouts & Recapitalizations", "Project Finance", "Strategic Partnerships"],
+      title: "Growth Equity",
+      body: "Businesses seeking capital to expand operations, enter new markets, pursue strategic growth or strengthen their position ahead of a future institutional transaction.",
     },
     {
-      title: "Investment Size & Structures",
-      items: [
-        "Check Size: $5M – $150M+",
-        "Equity, Mezzanine, Structured Debt",
-        "Flexible hold periods (3–10 years)",
-        "Minority and control positions",
-      ],
+      title: "Pre-IPO & Pre-M&A",
+      body: "We are particularly interested in select companies approaching strategic inflection points, including preparation for public-market entry, institutional investment, consolidation or potential M&A.",
     },
     {
-      title: "Company Characteristics",
-      items: [
-        "Proven business models",
-        "Strong management teams",
-        "Sustainable competitive advantages",
-        "Clear value creation pathways",
-      ],
+      title: "Projects",
+      body: "Projects with demonstrated feasibility, credible sponsors, identifiable commercial demand and a clear pathway to execution.",
+    },
+    {
+      title: "Management",
+      body: "Experienced and committed leadership teams with meaningful alignment and a demonstrated ability to execute.",
     },
   ],
+  geography: {
+    title: "Geography",
+    body: "United States, Canada, Caribbean, United Kingdom, Europe, GCC and select international markets.",
+    regions: ["United States", "Canada", "Caribbean", "United Kingdom", "Europe", "GCC", "Select international markets"],
+  },
+  structures: {
+    title: "Investment Structures",
+    body: "Direct investment, growth equity, co-investment, joint venture and other appropriately structured private-market opportunities.",
+    note: "Investment parameters vary according to opportunity, structure and strategic fit.",
+  },
 };
 
-export const sectors = [
-  "MedTech",
-  "BioTech",
-  "Renewable Energy",
-  "Oil & Gas",
-  "Real Estate",
-  "Hospitality",
-  "Cleantech",
-  "Manufacturing",
-  "Infrastructure",
-  "Technology",
-  "AI/Cloud",
-  "Derivatives",
-];
-
-export type Project = {
-  amount: string;
-  title: string;
-  location: string;
-  region: "Americas" | "Europe" | "Caribbean" | "Asia" | "Global";
-  sector: string;
-  body: string;
-};
-
-export const portfolio: Project[] = [
-  {
-    amount: "$130M",
-    title: "Hydrogen Field and Pipeline",
-    location: "Texas, US",
-    region: "Americas",
-    sector: "Renewable Energy",
-    body: "Green hydrogen production and distribution infrastructure.",
-  },
-  {
-    amount: "$110M",
-    title: "Renewable Diesel and Naphtha Plant",
-    location: "Louisiana, US",
-    region: "Americas",
-    sector: "Cleantech",
-    body: "State-of-the-art renewable fuel production facility.",
-  },
-  {
-    amount: "$100M",
-    title: "Water Bottling, Data Center & Pyrolytic Gasification Plant",
-    location: "Hawaii, US",
-    region: "Americas",
-    sector: "Infrastructure",
-    body: "Tire remuneration to energy plant with integrated facilities.",
-  },
-  {
-    amount: "$75M",
-    title: "Renewable Materials — Hemp Fibre",
-    location: "Alberta, Canada",
-    region: "Americas",
-    sector: "Manufacturing",
-    body: "Automotive-grade hemp fiber manufacturing for sustainable materials.",
-  },
-  {
-    amount: "$72M",
-    title: "Hospitality Real Estate Developer",
-    location: "California, US",
-    region: "Americas",
-    sector: "Real Estate",
-    body: "JV equity investment; collective projects valued at $630M.",
-  },
-  {
-    amount: "$50M",
-    title: "Pyrolytic Gasification — Municipal Waste to Energy Plant",
-    location: "Hawaii, US",
-    region: "Americas",
-    sector: "Renewable Energy",
-    body: "Collective projects totaling $510M in advanced waste conversion technology.",
-  },
-  {
-    amount: "$50M",
-    title: "Magnesium Alloy Manufacturer",
-    location: "Munich, Germany | Hyderabad, India",
-    region: "Global",
-    sector: "Manufacturing",
-    body: "Automotive-grade magnesium alloy production facilities.",
-  },
-  {
-    amount: "$29.4M",
-    title: "Hospitality Real Estate Developer",
-    location: "St Kitts & Nevis",
-    region: "Caribbean",
-    sector: "Hospitality",
-    body: "Caribbean hospitality development and resort infrastructure.",
-  },
-  {
-    amount: "$25M",
-    title: "Convention Centre — Real Estate Redevelopment",
-    location: "Texas, US",
-    region: "Americas",
-    sector: "Real Estate",
-    body: "Large-scale commercial real estate transformation project.",
-  },
-  {
-    amount: "$15M",
-    title: "Residential Condominiums, Tech Tower",
-    location: "Toronto, Canada",
-    region: "Americas",
-    sector: "Real Estate",
-    body: "Mixed-use development in Toronto's innovation corridor.",
-  },
-  {
-    amount: "$15M",
-    title: "Wireless EV Charging Manufacturer",
-    location: "London, UK",
-    region: "Europe",
-    sector: "Technology",
-    body: "Next-generation electric vehicle charging infrastructure.",
-  },
-  {
-    amount: "$5M",
-    title: "AI Data Cloud & Respiratory Device",
-    location: "Boston, US",
-    region: "Americas",
-    sector: "AI/Cloud",
-    body: "Healthcare technology and cloud computing innovation.",
-  },
-  {
-    amount: "$5M",
-    title: "Hot Chocolate & Dispenser Manufacturer",
-    location: "Paris, France | Beirut, Lebanon",
-    region: "Global",
-    sector: "Manufacturing",
-    body: "International food and beverage equipment manufacturing.",
-  },
-  {
-    amount: "$5M",
-    title: "Organ Transportation",
-    location: "London, UK",
-    region: "Europe",
-    sector: "MedTech",
-    body: "Medical logistics and organ transport technology solutions.",
-  },
-  {
-    amount: "$3M",
-    title: "Investment Platform",
-    location: "Washington DC, US",
-    region: "Americas",
-    sector: "Technology",
-    body: "Digital investment management and portfolio platform.",
-  },
-];
-
+// ---------------------------------------------------------------- Contact
 export const contact = {
-  eyebrow: "Contact",
-  heading: "Begin a conversation.",
-  body: "We welcome the opportunity to discuss potential partnerships and investment opportunities. Reach out to our team to begin a conversation.",
+  hero: {
+    eyebrow: "Contact",
+    title: ["Start a Conversation"],
+  },
+  body:
+    "RB Capital Ventures welcomes enquiries from management teams, project sponsors, family offices, institutional investors and strategic partners.",
+  body2:
+    "For investment opportunities, please provide a concise overview together with relevant investment materials.",
+  form: {
+    heading: "Submit an Opportunity",
+    fields: {
+      name: "Name",
+      company: "Company / Organisation",
+      email: "Email",
+      overview: "Opportunity Overview",
+      upload: "Investment Materials / Pitch Deck",
+    },
+    submit: "Submit an Opportunity",
+    note: "Materials are handled in confidence. PDF or presentation, up to 25 MB.",
+  },
 };
