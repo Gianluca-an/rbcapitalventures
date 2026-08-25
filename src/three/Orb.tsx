@@ -9,6 +9,7 @@ import {
 } from "@react-three/drei";
 import * as THREE from "three";
 import { prefersReducedMotion } from "./hasWebGL";
+import { PrismRibbon } from "./PrismRibbon";
 
 /* Pointer parallax — reads a smoothed pointer and eases the camera. */
 function Rig({ reduced }: { reduced: boolean }) {
@@ -46,14 +47,14 @@ function GlassOrb({ reduced }: { reduced: boolean }) {
           samples={8}
           resolution={512}
           transmission={1}
-          roughness={0.05}
-          thickness={1.2}
-          ior={1.4}
-          chromaticAberration={0.08}
-          anisotropicBlur={0.16}
-          distortion={0.16}
-          distortionScale={0.28}
-          temporalDistortion={reduced ? 0 : 0.06}
+          roughness={0.04}
+          thickness={1.35}
+          ior={1.44}
+          chromaticAberration={0.26}
+          anisotropicBlur={0.1}
+          distortion={0.35}
+          distortionScale={0.35}
+          temporalDistortion={reduced ? 0 : 0.18}
           clearcoat={1}
           attenuationColor="#d9edff"
           attenuationDistance={2.6}
@@ -94,6 +95,7 @@ export function Orb() {
       <directionalLight position={[3, 5, 3]} intensity={1.15} />
       <directionalLight position={[-4, 2, -2]} intensity={0.5} color="#9cc6f5" />
 
+      <PrismRibbon reduced={reduced} />
       <GlassOrb reduced={reduced} />
       {!reduced && <Sparkles count={40} scale={[9, 5, 4]} size={2.2} speed={0.28} color="#3e8fe0" opacity={0.55} position={[0, 0.6, 1]} />}
 

@@ -34,8 +34,6 @@ export function Hero() {
             <StaticOrb />
           )}
         </div>
-        <div className="hero__reflect" />
-        <div className="hero__waterline" />
       </motion.div>
 
       <motion.div className="hero__content container" style={{ y: contentY, opacity: contentOpacity }}>
