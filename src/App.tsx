@@ -16,13 +16,15 @@ import { Globe } from "./sections/Globe";
 import { Contact } from "./sections/Contact";
 
 const INTRO_KEY = "rbcv_intro_seen";
+// true = play the intro once per browser session; false = play it on every load.
+const INTRO_ONCE_PER_SESSION = false;
 
 export default function App() {
   useSmoothScroll();
   const reduced = prefersReducedMotion();
 
-  // Show the intro once per browser session.
   const [seen] = useState(() => {
+    if (!INTRO_ONCE_PER_SESSION) return false;
     try {
       return sessionStorage.getItem(INTRO_KEY) === "1";
     } catch {
@@ -33,11 +35,18 @@ export default function App() {
 
   const reveal = useCallback(() => {
     setRevealed(true);
-    try {
-      sessionStorage.setItem(INTRO_KEY, "1");
-    } catch {
-      /* private mode — intro simply plays each load */
+    if (INTRO_ONCE_PER_SESSION) {
+      try {
+        sessionStorage.setItem(INTRO_KEY, "1");
+      } catch {
+        /* private mode — intro simply plays each load */
+      }
     }
+  }, []);
+
+  // Land at the top on every load, regardless of browser scroll restoration.
+  useEffect(() => {
+    window.scrollTo(0, 0);
   }, []);
 
   // Lock scroll while the intro plays.
