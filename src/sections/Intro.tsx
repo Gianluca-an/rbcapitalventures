@@ -11,7 +11,7 @@ const EASE = [0.22, 1, 0.36, 1] as const;
  */
 export function Intro({ onReveal, reduced }: { onReveal: () => void; reduced: boolean }) {
   useEffect(() => {
-    const t = setTimeout(onReveal, reduced ? 450 : 2750);
+    const t = setTimeout(onReveal, reduced ? 400 : 2000);
     return () => clearTimeout(t);
   }, [onReveal, reduced]);
 
@@ -19,31 +19,31 @@ export function Intro({ onReveal, reduced }: { onReveal: () => void; reduced: bo
     <motion.div
       className="intro"
       initial={{ opacity: 1 }}
-      exit={{ opacity: 0, y: -36, transition: { duration: 0.9, ease: EASE } }}
+      exit={{ opacity: 0, y: -32, transition: { duration: 0.65, ease: EASE } }}
     >
       <div className="intro__backdrop" />
       <div className="intro__inner">
         <motion.span
           className="eyebrow intro__eyebrow"
-          initial={{ opacity: 0, y: 16 }}
+          initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: EASE, delay: reduced ? 0 : 0.25 }}
+          transition={{ duration: 0.6, ease: EASE, delay: reduced ? 0 : 0.1 }}
         >
           Global Investment &amp; Project Finance
         </motion.span>
         <motion.h1
           className="intro__wm serif"
-          initial={{ opacity: 0, y: 24 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, ease: EASE, delay: reduced ? 0 : 0.45 }}
+          transition={{ duration: 0.65, ease: EASE, delay: reduced ? 0 : 0.24 }}
         >
           {company.name}
         </motion.h1>
         <motion.p
           className="intro__tag"
-          initial={{ opacity: 0, y: 16 }}
+          initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: EASE, delay: reduced ? 0 : 0.68 }}
+          transition={{ duration: 0.6, ease: EASE, delay: reduced ? 0 : 0.42 }}
         >
           {company.promise}
         </motion.p>
