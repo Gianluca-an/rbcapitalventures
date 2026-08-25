@@ -1,173 +1,113 @@
-import { useEffect, useRef, useState } from "react";
-import { AnimatePresence, motion, useScroll, useTransform } from "framer-motion";
-import { NetworkCanvas } from "../components/NetworkCanvas";
-import { company, stats } from "../data/content";
+import { Suspense, lazy, useEffect, useRef, useState } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { company } from "../data/content";
+import { StaticOrb } from "../three/StaticOrb";
+import { hasWebGL } from "../three/hasWebGL";
 
-const slides = [
-  {
-    kicker: "01 — Analysis",
-    title: "Independent\nCritical Thinking",
-    body: "Rigorous, unbiased analysis that uncovers value where others see only complexity.",
-  },
-  {
-    kicker: "02 — Partnership",
-    title: "Strategic\nPartnerships",
-    body: "Deep sector expertise and analytical frameworks that reveal durable competitive advantage.",
-  },
-  {
-    kicker: "03 — Execution",
-    title: "Systematic\nExecution",
-    body: "Disciplined delivery — from due diligence through value realization and exit.",
-  },
-];
-
-const DURATION = 5200;
+// Heavy 3D bundle is code-split so the page paints instantly.
+const Orb = lazy(() => import("../three/Orb").then((m) => ({ default: m.Orb })));
 
 export function Hero() {
-  const [index, setIndex] = useState(0);
-  const [paused, setPaused] = useState(false);
   const heroRef = useRef<HTMLElement>(null);
-
-  // Parallax: content lifts and fades as the visitor scrolls into the site.
-  const { scrollYProgress } = useScroll({
-    target: heroRef,
-    offset: ["start start", "end start"],
-  });
-  const contentY = useTransform(scrollYProgress, [0, 1], [0, -90]);
-  const contentOpacity = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
-  const veilOpacity = useTransform(scrollYProgress, [0, 1], [0, 0.4]);
+  const [webgl, setWebgl] = useState(false);
 
   useEffect(() => {
-    if (paused) return;
-    const t = setTimeout(() => setIndex((i) => (i + 1) % slides.length), DURATION);
-    return () => clearTimeout(t);
-  }, [index, paused]);
+    setWebgl(hasWebGL());
+  }, []);
 
-  const active = slides[index];
+  const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
+  const contentY = useTransform(scrollYProgress, [0, 1], [0, -70]);
+  const contentOpacity = useTransform(scrollYProgress, [0, 0.75], [1, 0]);
+  const orbScale = useTransform(scrollYProgress, [0, 1], [1, 1.12]);
 
   return (
     <section id="home" className="hero" ref={heroRef}>
-      <div className="hero__bg">
-        <NetworkCanvas className="hero__net" />
-        <div className="hero__glow hero__glow--1" />
-        <div className="hero__glow hero__glow--2" />
+      <motion.div className="hero__bg" style={{ scale: orbScale }}>
+        <div className="hero__sky" />
         <div className="hero__grid" />
-        <motion.div className="hero__veil" style={{ opacity: veilOpacity }} />
-      </div>
+        <div className="hero__orb">
+          {webgl ? (
+            <Suspense fallback={<StaticOrb />}>
+              <Orb />
+            </Suspense>
+          ) : (
+            <StaticOrb />
+          )}
+        </div>
+        <div className="hero__reflect" />
+        <div className="hero__waterline" />
+      </motion.div>
 
-      <motion.div
-        className="hero__content container"
-        style={{ y: contentY, opacity: contentOpacity }}
-        onMouseEnter={() => setPaused(true)}
-        onMouseLeave={() => setPaused(false)}
-      >
+      <motion.div className="hero__content container" style={{ y: contentY, opacity: contentOpacity }}>
         <motion.span
           className="eyebrow hero__eyebrow"
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.15 }}
+          transition={{ duration: 0.8, delay: 0.15 }}
         >
           Global Investment &amp; Project Finance
         </motion.span>
 
-        <div className="hero__stage">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={index}
-              className="hero__slide"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.5 }}
-            >
-              <span className="hero__kicker">{active.kicker}</span>
-              <h1 className="hero__title serif">
-                {active.title.split("\n").map((line, li) => (
-                  <span className="hero__line reveal-mask" key={li}>
-                    <motion.span
-                      className="hero__line-inner"
-                      initial={{ y: "110%" }}
-                      animate={{ y: 0 }}
-                      exit={{ y: "-110%" }}
-                      transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: li * 0.08 }}
-                    >
-                      {line}
-                    </motion.span>
-                  </span>
-                ))}
-              </h1>
-              <motion.p
-                className="hero__slide-body"
-                initial={{ opacity: 0, y: 14 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.6, delay: 0.25 }}
+        <h1 className="hero__title serif">
+          {["Transforming complex", "opportunities into"].map((line, i) => (
+            <span className="reveal-mask hero__line" key={i}>
+              <motion.span
+                className="hero__line-inner"
+                initial={{ y: "110%" }}
+                animate={{ y: 0 }}
+                transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: 0.25 + i * 0.1 }}
               >
-                {active.body}
-              </motion.p>
-            </motion.div>
-          </AnimatePresence>
-        </div>
+                {line}
+              </motion.span>
+            </span>
+          ))}
+          <span className="reveal-mask hero__line">
+            <motion.span
+              className="hero__line-inner hero__accent"
+              initial={{ y: "110%" }}
+              animate={{ y: 0 }}
+              transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: 0.45 }}
+            >
+              <span className="italic">enduring value</span>
+              <span className="dot">.</span>
+            </motion.span>
+          </span>
+        </h1>
 
         <motion.p
-          className="hero__promise"
-          initial={{ opacity: 0, y: 12 }}
+          className="hero__sub"
+          initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.4 }}
+          transition={{ duration: 0.8, delay: 0.6 }}
         >
-          {company.promise}
+          {company.promise} Independent critical thinking, strategic partnerships and systematic
+          execution — the calm intelligence that turns complexity into lasting outcomes.
         </motion.p>
 
         <motion.div
-          className="hero__actions"
-          initial={{ opacity: 0, y: 12 }}
+          className="hero__cta"
+          initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.5 }}
+          transition={{ duration: 0.8, delay: 0.72 }}
         >
           <a href="#about" className="btn btn--primary">
-            Explore the firm
-            <span className="btn__arrow">→</span>
+            Explore the firm <span className="btn__arrow">→</span>
           </a>
-          <a href="#portfolio" className="btn btn--ghost hero__ghost">
+          <a href="#portfolio" className="btn btn--ghost">
             View portfolio
           </a>
         </motion.div>
-
-        {/* Slider controls */}
-        <div className="hero__controls">
-          <div className="hero__dots" role="tablist" aria-label="Firm principles">
-            {slides.map((s, i) => (
-              <button
-                key={i}
-                className={`hero__dot ${i === index ? "is-active" : ""}`}
-                aria-label={`Show ${s.title.replace("\n", " ")}`}
-                aria-selected={i === index}
-                role="tab"
-                onClick={() => setIndex(i)}
-              >
-                <span className="hero__dot-fill" style={{ animationDuration: `${DURATION}ms` }} />
-              </button>
-            ))}
-          </div>
-        </div>
       </motion.div>
 
-      {/* Stat ribbon anchored to the base of the opening page */}
-      <motion.div
-        className="hero__stats container"
+      <motion.a
+        href="#about"
+        className="hero__scroll"
+        aria-label="Scroll to explore"
         style={{ opacity: contentOpacity }}
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.65 }}
       >
-        {stats.map((s) => (
-          <div className="hero__stat" key={s.label}>
-            <span className="hero__stat-value serif">{s.value}</span>
-            <span className="hero__stat-label">{s.label}</span>
-          </div>
-        ))}
-      </motion.div>
-
+        <span>Scroll</span>
+        <span className="hero__scroll-line" />
+      </motion.a>
     </section>
   );
 }
