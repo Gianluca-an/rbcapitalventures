@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Logo } from "./Logo";
 import { nav, company } from "../data/content";
 
-export function Nav() {
+export function Nav({ revealed = true }: { revealed?: boolean }) {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -14,7 +14,14 @@ export function Nav() {
   }, []);
 
   return (
-    <header className={`nav ${scrolled ? "nav--solid" : ""}`}>
+    <header
+      className={`nav ${scrolled ? "nav--solid" : ""}`}
+      style={{
+        opacity: revealed ? 1 : 0,
+        pointerEvents: revealed ? "auto" : "none",
+        transition: "opacity 0.9s cubic-bezier(0.22,1,0.36,1) 0.2s",
+      }}
+    >
       <div className="nav__inner container">
         <a href="#home" className="nav__brand" aria-label={`${company.name} — home`}>
           <Logo variant="dark" size={36} />

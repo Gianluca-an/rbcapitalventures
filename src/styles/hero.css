@@ -1,5 +1,59 @@
 /* ==========================================================================
-   "Still Waters" hero — glass orb over reflective water
+   Cinematic intro overlay — transparent so the live orb shows through
+   ========================================================================== */
+.intro {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 24px;
+}
+.intro__backdrop {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: min(920px, 92%);
+  height: 520px;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(ellipse at center, rgba(246, 251, 255, 0.72) 0%, rgba(246, 251, 255, 0) 66%);
+  pointer-events: none;
+}
+.intro__inner { position: relative; z-index: 1; }
+.intro__eyebrow { justify-content: center; margin-bottom: 24px; }
+.intro__eyebrow::before { display: none; }
+.intro__wm {
+  font-size: clamp(34px, 7vw, 84px);
+  color: var(--ink);
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+.intro__tag {
+  margin-top: 20px;
+  color: var(--ink-600);
+  font-size: clamp(15px, 1.5vw, 19px);
+}
+.intro__skip {
+  position: fixed;
+  bottom: 24px;
+  right: 26px;
+  font-size: 11.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-400);
+  background: rgba(255, 255, 255, 0.62);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 9px 18px;
+  backdrop-filter: blur(6px);
+  transition: color 0.25s, border-color 0.25s;
+}
+.intro__skip:hover { color: var(--sig-deep); border-color: var(--sig-soft); }
+
+/* ==========================================================================
+   "Still Waters" hero — glass orb + prismatic light
    ========================================================================== */
 
 .hero {
