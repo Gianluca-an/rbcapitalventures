@@ -120,7 +120,7 @@ export const leadership = {
       bio: "Rosalyn Bronstein is Managing Director of RB Capital Ventures and leads the firm's investment strategy and activities across private markets. She brings more than three decades of investment, management consulting and international business experience, with particular expertise across energy, infrastructure, environmental markets and cross-border investment.",
       linkedin: "https://www.linkedin.com/in/rosalyn-bronstein/",
       email: "",
-      photo: "",
+      photo: "/images/leadership/rosalyn-bronstein.jpg",
     },
     {
       name: "Royan Khayri",
@@ -128,7 +128,7 @@ export const leadership = {
       bio: "Roy Khayri is Senior Vice-President at RB Capital Ventures, where he focuses on the origination, evaluation and execution of growth equity and private-market investments. He is a member of the firm's Investment Committee and works across commercial assessment, financial analysis, transaction execution, portfolio oversight and relationships with institutional and JV partners across international markets.",
       linkedin: "https://www.linkedin.com/in/royankhayri/",
       email: "roy@rbcapitalventures.com",
-      photo: "",
+      photo: "/images/leadership/roy-khayri.jpg",
     },
     {
       name: "Kevin Wilson",
@@ -136,7 +136,7 @@ export const leadership = {
       bio: "Kevin Wilson serves as Senior Vice-President at RB Capital Ventures, supporting the firm's investment activities through expertise in business structuring, valuation, capital strategy and transaction execution. He brings extensive experience across professional services, private business, real estate, energy and corporate transactions.",
       linkedin: "",
       email: "",
-      photo: "",
+      photo: "/images/leadership/kevin-wilson.jpg",
     },
     {
       name: "Ludmila Pirogova",
@@ -144,7 +144,7 @@ export const leadership = {
       bio: "Ludmila Pirogova serves as a Senior Vice-President at RB Capital Ventures, working across investment strategy, capital governance and institutional decision-making. She brings more than two decades of experience across financial services, infrastructure, energy, mining and technology-enabled assets, with particular expertise in investment governance, risk and complex asset environments.",
       linkedin: "",
       email: "",
-      photo: "",
+      photo: "/images/leadership/ludmila-pirogova.jpg",
     },
   ],
 };
