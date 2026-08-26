@@ -294,7 +294,7 @@ export const contact = {
       overview: "Opportunity Overview",
       upload: "Investment Materials / Pitch Deck",
     },
-    submit: "Submit an Opportunity",
+    submit: "Submit",
     note: "Materials are handled in confidence. PDF or presentation, up to 25 MB.",
   },
 };
