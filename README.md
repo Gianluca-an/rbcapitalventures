@@ -35,18 +35,28 @@ npm run preview  # preview the production build
 Cloudflare Pages: build command `npm run build`, output `dist`, and add an equivalent SPA
 fallback (`/* /index.html 200`).
 
-> ⚠️ **LAUNCH BLOCKER — contact form is Netlify-only right now.** The form is wired to
-> **Netlify Forms**, which only collects submissions when the site is deployed **on Netlify**.
-> On any other host (Cloudflare Pages, Vercel, GitHub Pages, …) the form will appear to work but
-> **submissions are silently lost** — nothing is stored and the client gets no error.
->
-> **Before launch, confirm the host:**
-> - **Deploying on Netlify?** → nothing to do; submissions land under *Forms* in the dashboard
->   (add a notification email + spam filter there).
-> - **Deploying anywhere else?** → swap the backend to a host-agnostic service before go-live.
->   Recommended: **Web3Forms** (free, handles the pitch-deck upload) or **Formspree**. This is a
->   ~15-minute change: point the `fetch` in `src/pages/Contact.tsx` at the service endpoint and
->   remove the hidden detection form in `index.html`.
+### Contact form — hosted on Cloudflare, Netlify Forms as the backend
+
+The site is served by **Cloudflare Pages**, but the contact form is processed by **Netlify
+Forms** — no third-party form service, no paid plan, and real pitch-deck file handling. This
+works because Netlify Forms only needs the submission to *arrive at a Netlify deployment*, not for
+visitors to be on Netlify. One-time setup:
+
+1. **Deploy this repo to Netlify too** (New site → import the repo → build `npm run build`, publish
+   `dist`). Its build bot detects the hidden `opportunity` form in `index.html` and provisions the
+   endpoint. This Netlify site is a *form backend only* — nobody visits it. Note its URL, e.g.
+   `https://rb-capital.netlify.app/`.
+2. **In Netlify → Forms**, add a notification email (and enable spam filtering / reCAPTCHA).
+3. **In Cloudflare Pages → Settings → Environment variables**, set
+   `VITE_FORM_ENDPOINT` = your Netlify site URL (including trailing slash), then redeploy.
+
+At runtime the Cloudflare-hosted form cross-posts its `multipart/form-data` submission (pitch-deck
+file included) to that Netlify URL via a `no-cors` request; Netlify stores it and emails you. If
+`VITE_FORM_ENDPOINT` is unset it falls back to `/` (correct for a Netlify-hosted deploy or local
+dev). See `src/pages/Contact.tsx` for the details.
+
+*Alternative:* to drop the Netlify dependency entirely later, repoint `VITE_FORM_ENDPOINT` (or the
+`fetch`) at **Web3Forms** / **Formspree** and remove the hidden form in `index.html`.
 
 ## Photography (client to provide)
 

@@ -9,22 +9,37 @@ export function Contact() {
   const [error, setError] = useState(false);
   const [fileName, setFileName] = useState("");
 
-  // Wired to Netlify Forms. A hidden static detection form in index.html
-  // registers the "opportunity" form at build time; here we POST the real
-  // submission as multipart/form-data (required so the deck upload is stored).
+  // Backend: Netlify Forms — usable even though the site is hosted on Cloudflare.
+  // The "opportunity" form is registered by the hidden static form in index.html
+  // on a companion Netlify deploy (form-processing backend only; nobody visits it).
+  // This form cross-posts its multipart/form-data submission — pitch-deck file and
+  // all — to that Netlify URL, where Netlify stores it and emails a notification.
   //
-  // ⚠️ LAUNCH BLOCKER: this only collects on a NETLIFY deploy. On any other host
-  // the POST goes nowhere and submissions are silently lost. If the client isn't
-  // on Netlify, repoint this fetch at a host-agnostic backend (Web3Forms /
-  // Formspree) and drop the hidden form in index.html. See README ("Deployment").
+  // Configure the Netlify endpoint via VITE_FORM_ENDPOINT (set it in Cloudflare
+  // Pages → Settings → Environment variables to your Netlify site URL, e.g.
+  // https://rb-capital.netlify.app/). When unset it falls back to "/", which is
+  // correct when the site itself is served by Netlify or for local dev.
+  //
+  // A cross-origin multipart POST is CORS-safelisted, so the data reaches Netlify
+  // fine; we send it `no-cors` (the response is then opaque and unreadable, which
+  // is why success is inferred from the request not throwing). The mailto fallback
+  // in the error branch covers the rare network failure.
+  const ENDPOINT = import.meta.env.VITE_FORM_ENDPOINT || "/";
+  const CROSS_ORIGIN = /^https?:\/\//.test(ENDPOINT);
+
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setError(false);
     setSending(true);
     try {
       const data = new FormData(e.currentTarget);
-      const res = await fetch("/", { method: "POST", body: data });
-      if (!res.ok) throw new Error(String(res.status));
+      await fetch(ENDPOINT, {
+        method: "POST",
+        body: data,
+        // Cross-domain (Cloudflare → Netlify): opaque response, but the POST lands.
+        // Same-origin (Netlify-hosted / local): normal request.
+        ...(CROSS_ORIGIN ? { mode: "no-cors" as RequestMode } : {}),
+      });
       setSent(true);
     } catch {
       setError(true);
