@@ -12,6 +12,11 @@ export function Contact() {
   // Wired to Netlify Forms. A hidden static detection form in index.html
   // registers the "opportunity" form at build time; here we POST the real
   // submission as multipart/form-data (required so the deck upload is stored).
+  //
+  // ⚠️ LAUNCH BLOCKER: this only collects on a NETLIFY deploy. On any other host
+  // the POST goes nowhere and submissions are silently lost. If the client isn't
+  // on Netlify, repoint this fetch at a host-agnostic backend (Web3Forms /
+  // Formspree) and drop the hidden form in index.html. See README ("Deployment").
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setError(false);

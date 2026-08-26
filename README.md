@@ -35,6 +35,19 @@ npm run preview  # preview the production build
 Cloudflare Pages: build command `npm run build`, output `dist`, and add an equivalent SPA
 fallback (`/* /index.html 200`).
 
+> ⚠️ **LAUNCH BLOCKER — contact form is Netlify-only right now.** The form is wired to
+> **Netlify Forms**, which only collects submissions when the site is deployed **on Netlify**.
+> On any other host (Cloudflare Pages, Vercel, GitHub Pages, …) the form will appear to work but
+> **submissions are silently lost** — nothing is stored and the client gets no error.
+>
+> **Before launch, confirm the host:**
+> - **Deploying on Netlify?** → nothing to do; submissions land under *Forms* in the dashboard
+>   (add a notification email + spam filter there).
+> - **Deploying anywhere else?** → swap the backend to a host-agnostic service before go-live.
+>   Recommended: **Web3Forms** (free, handles the pitch-deck upload) or **Formspree**. This is a
+>   ~15-minute change: point the `fetch` in `src/pages/Contact.tsx` at the service endpoint and
+>   remove the hidden detection form in `index.html`.
+
 ## Photography (client to provide)
 
 The site is photography-led. Every image is a **`<Photo>`** slot rendering a clearly-labelled
