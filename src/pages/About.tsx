@@ -10,7 +10,13 @@ function LeadershipCard({ person, index }: { person: (typeof leadership.people)[
   return (
     <Reveal delay={0.06 * index} className={`leader ${open ? "is-open" : ""}`}>
       <button className="leader__portrait" onClick={() => setOpen((v) => !v)} aria-expanded={open}>
-        <Photo caption="Principal portrait" tone="light" />
+        <Photo
+          caption="Principal portrait"
+          tone="light"
+          src={person.photo || undefined}
+          alt={`${person.name}, ${person.title}, RB Capital Ventures`}
+          overlay={false}
+        />
       </button>
       <div className="leader__head">
         <div>
