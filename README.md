@@ -26,37 +26,36 @@ npm run build    # production build -> dist/
 npm run preview  # preview the production build
 ```
 
-## Deployment
+## Deployment — hosted on Netlify
 
-`npm run build` emits a static site to `dist/`. Config is included:
-- **`netlify.toml`** — build command + publish dir (one-click import on Netlify)
+The live site is hosted on **Netlify**. `npm run build` emits a static site to `dist/`; config is
+included so importing the repo needs no manual setup:
+- **`netlify.toml`** — build command (`npm run build`) + publish dir (`dist`)
 - **`public/_redirects`** — SPA fallback so deep links (`/about`, `/sectors`, …) resolve
 
-Cloudflare Pages: build command `npm run build`, output `dist`, and add an equivalent SPA
-fallback (`/* /index.html 200`).
+**To deploy:** on Netlify, *Add new project → import this repo*. Netlify reads `netlify.toml`, builds,
+and publishes. Add the custom domain under *Domain management* (free SSL is automatic).
 
-### Contact form — hosted on Cloudflare, Netlify Forms as the backend
+### Contact form (Netlify Forms — native)
 
-The site is served by **Cloudflare Pages**, but the contact form is processed by **Netlify
-Forms** — no third-party form service, no paid plan, and real pitch-deck file handling. This
-works because Netlify Forms only needs the submission to *arrive at a Netlify deployment*, not for
-visitors to be on Netlify. One-time setup:
+The contact form is handled by **Netlify Forms**: no third-party service, no paid plan, and the
+pitch-deck file is stored with each submission. Because the site is hosted on Netlify, the form
+posts **same-origin** and works with no extra configuration. How it's wired:
 
-1. **Deploy this repo to Netlify too** (New site → import the repo → build `npm run build`, publish
-   `dist`). Its build bot detects the hidden `opportunity` form in `index.html` and provisions the
-   endpoint. This Netlify site is a *form backend only* — nobody visits it. Note its URL, e.g.
-   `https://rb-capital.netlify.app/`.
-2. **In Netlify → Forms**, add a notification email (and enable spam filtering / reCAPTCHA).
-3. **In Cloudflare Pages → Settings → Environment variables**, set
-   `VITE_FORM_ENDPOINT` = your Netlify site URL (including trailing slash), then redeploy.
+- A hidden static detection form in `index.html` registers the `opportunity` form. **Netlify's
+  form detection must be enabled** (Project → Forms → *Enable form detection*) and then a deploy
+  run so it scans the HTML — after that the form appears under *Forms*.
+- `src/pages/Contact.tsx` POSTs the submission as `multipart/form-data`. The POST target is
+  `VITE_FORM_ENDPOINT` if set, else `/` — and on a Netlify-hosted site `/` is exactly right, so
+  the variable is left unset.
+- **Notifications:** Project → Forms → *Form notifications* → add the recipient email(s) (e.g.
+  `info@rbcapitalventures.com`). Recipients need no Netlify login. Enable spam filtering / reCAPTCHA
+  there before launch.
 
-At runtime the Cloudflare-hosted form cross-posts its `multipart/form-data` submission (pitch-deck
-file included) to that Netlify URL via a `no-cors` request; Netlify stores it and emails you. If
-`VITE_FORM_ENDPOINT` is unset it falls back to `/` (correct for a Netlify-hosted deploy or local
-dev). See `src/pages/Contact.tsx` for the details.
-
-*Alternative:* to drop the Netlify dependency entirely later, repoint `VITE_FORM_ENDPOINT` (or the
-`fetch`) at **Web3Forms** / **Formspree** and remove the hidden form in `index.html`.
+*Portability:* if the site is ever moved to a non-Netlify host (Cloudflare Pages, etc.), the same
+form still works by setting `VITE_FORM_ENDPOINT` to a companion Netlify deploy's URL (the code then
+cross-posts via a `no-cors` request), or by repointing it at **Web3Forms** / **Formspree** and
+removing the hidden form. See the comment in `src/pages/Contact.tsx`.
 
 ## Photography (client to provide)
 
