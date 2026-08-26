@@ -65,7 +65,9 @@ export function Contact() {
         <div className="container contact-grid">
           {/* Form */}
           <div className="contact-form-wrap">
-            <Reveal><h2 className="display display--md contact-form-title">{contact.form.heading}</h2></Reveal>
+            {!sent && (
+              <Reveal><h2 className="display display--md contact-form-title">{contact.form.heading}</h2></Reveal>
+            )}
             {sent ? (
               <Reveal className="contact-thanks">
                 <p className="display display--md">Thank you.</p>
