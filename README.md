@@ -71,10 +71,15 @@ src/
 ## Notes & next steps
 
 - **Investment Leadership** (About page) — Rosalyn Bronstein, Royan Khayri, Kevin Wilson,
-  Ludmila Pirogova; bios reveal on hover/click. Portraits are placeholders awaiting supply.
-- **Contact form** — front-end only. Wire to **Netlify Forms** or **Formspree** for secure
-  delivery, PDF handling and spam protection before launch.
-- **Geography map** — a placeholder slot; can be replaced with a proper map graphic.
-- Per brief: **no public portfolio / case studies, no oversized numbers, no icon grids.**
+  Ludmila Pirogova; bios reveal on hover/click. Real portraits supplied (see
+  `public/images/leadership/`).
+- **Contact form** — wired to **Netlify Forms**. A hidden static detection form in
+  `index.html` registers the `opportunity` form at build time; the React form on `/contact`
+  POSTs the real submission as `multipart/form-data` (so the deck upload is stored). No extra
+  config needed — submissions appear under **Forms** in the Netlify dashboard once deployed.
+  Add notification emails / a spam filter there before launch. (On non-Netlify hosts, swap the
+  `fetch` target for Formspree or similar.)
+- Per brief: **no public portfolio / case studies, no oversized numbers, no icon grids**, and
+  **no geographic map** — coverage is stated as a plain region list.
 - SEO/accessibility: per-page `<title>`/description can be added with `react-helmet-async`
   when desired; images carry alt text via the `Photo` `alt`/`caption`.

@@ -5,13 +5,27 @@ import { company, contact } from "../data/content";
 
 export function Contact() {
   const [sent, setSent] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState(false);
   const [fileName, setFileName] = useState("");
 
-  // NOTE: front-end only. For production, wire to Netlify Forms or Formspree
-  // for secure delivery + PDF handling + spam protection.
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  // Wired to Netlify Forms. A hidden static detection form in index.html
+  // registers the "opportunity" form at build time; here we POST the real
+  // submission as multipart/form-data (required so the deck upload is stored).
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setSent(true);
+    setError(false);
+    setSending(true);
+    try {
+      const data = new FormData(e.currentTarget);
+      const res = await fetch("/", { method: "POST", body: data });
+      if (!res.ok) throw new Error(String(res.status));
+      setSent(true);
+    } catch {
+      setError(true);
+    } finally {
+      setSending(false);
+    }
   };
 
   return (
@@ -39,7 +53,21 @@ export function Contact() {
               </Reveal>
             ) : (
               <Reveal>
-                <form className="contact-form" onSubmit={onSubmit}>
+                <form
+                  className="contact-form"
+                  name="opportunity"
+                  method="POST"
+                  data-netlify="true"
+                  data-netlify-honeypot="bot-field"
+                  encType="multipart/form-data"
+                  onSubmit={onSubmit}
+                >
+                  <input type="hidden" name="form-name" value="opportunity" />
+                  <p className="hidden-field" aria-hidden="true">
+                    <label>
+                      Do not fill this out: <input name="bot-field" tabIndex={-1} autoComplete="off" />
+                    </label>
+                  </p>
                   <div className="field">
                     <label htmlFor="name">{contact.form.fields.name}</label>
                     <input id="name" name="name" type="text" required />
@@ -70,9 +98,19 @@ export function Contact() {
                       <span className="upload__name">{fileName || "PDF or presentation, up to 25 MB"}</span>
                     </label>
                   </div>
-                  <button type="submit" className="btn btn--solid contact-form__submit">
-                    {contact.form.submit}
+                  <button
+                    type="submit"
+                    className="btn btn--solid contact-form__submit"
+                    disabled={sending}
+                  >
+                    {sending ? "Submitting…" : contact.form.submit}
                   </button>
+                  {error && (
+                    <p className="contact-form__error" role="alert">
+                      Something went wrong sending your submission. Please try again, or email{" "}
+                      <a href={`mailto:${company.email}`}>{company.email}</a> directly.
+                    </p>
+                  )}
                   <p className="contact-form__note">{contact.form.note}</p>
                 </form>
               </Reveal>

@@ -17,6 +17,27 @@
     />
   </head>
   <body>
+    <!--
+      Netlify Forms detection form. Netlify's build bot scans the deployed HTML
+      for this static form and registers it; the React form on /contact posts to
+      it via fetch. Field names MUST stay in sync with src/pages/Contact.tsx.
+    -->
+    <form
+      name="opportunity"
+      data-netlify="true"
+      data-netlify-honeypot="bot-field"
+      enctype="multipart/form-data"
+      hidden
+    >
+      <input type="hidden" name="form-name" value="opportunity" />
+      <input type="text" name="name" />
+      <input type="text" name="company" />
+      <input type="email" name="email" />
+      <textarea name="overview"></textarea>
+      <input type="file" name="deck" />
+      <input name="bot-field" />
+    </form>
+
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

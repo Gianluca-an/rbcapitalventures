@@ -1,5 +1,4 @@
 import { PageHero } from "../components/PageHero";
-import { Photo } from "../components/Photo";
 import { Reveal } from "../components/Reveal";
 import { criteria } from "../data/content";
 
@@ -41,15 +40,12 @@ export function Criteria() {
             <Reveal><span className="eyebrow">Geography</span></Reveal>
             <Reveal delay={0.05}><h2 className="display display--lg">{criteria.geography.title}</h2></Reveal>
             <Reveal delay={0.1}><p className="lead">{criteria.geography.body}</p></Reveal>
-            <ul className="geography__regions">
-              {criteria.geography.regions.map((r, i) => (
-                <Reveal key={r} delay={0.03 * i} as="li" className="geography__region">{r}</Reveal>
-              ))}
-            </ul>
           </div>
-          <Reveal delay={0.1} className="geography__map" as="figure">
-            <Photo caption="Geographic reach — map" tone="light" />
-          </Reveal>
+          <ul className="geography__regions">
+            {criteria.geography.regions.map((r, i) => (
+              <Reveal key={r} delay={0.03 * i} as="li" className="geography__region">{r}</Reveal>
+            ))}
+          </ul>
         </div>
       </section>
 
