@@ -277,6 +277,8 @@
 .hidden-field { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
 .contact-thanks { padding: 20px 0; }
 .contact-thanks .lead { margin-top: 16px; }
+.contact-hero--thanks { min-height: 62vh; display: flex; align-items: center; }
+.contact-thanks__back { margin-top: 34px; }
 
 .contact-details { display: flex; flex-direction: column; gap: clamp(28px, 4vw, 40px); border-left: 1px solid var(--line); padding-left: clamp(30px, 4vw, 56px); }
 .contact-block { display: flex; flex-direction: column; gap: 10px; }

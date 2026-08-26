@@ -4,50 +4,19 @@ import { LinkedInIcon } from "../components/icons";
 import { company, contact } from "../data/content";
 
 export function Contact() {
-  const [sent, setSent] = useState(false);
-  const [sending, setSending] = useState(false);
-  const [error, setError] = useState(false);
   const [fileName, setFileName] = useState("");
 
-  // Backend: Netlify Forms — usable even though the site is hosted on Cloudflare.
-  // The "opportunity" form is registered by the hidden static form in index.html
-  // on a companion Netlify deploy (form-processing backend only; nobody visits it).
-  // This form cross-posts its multipart/form-data submission — pitch-deck file and
-  // all — to that Netlify URL, where Netlify stores it and emails a notification.
+  // Backend: Netlify Forms (site is hosted on Netlify, so this posts same-origin).
   //
-  // Configure the Netlify endpoint via VITE_FORM_ENDPOINT (set it in Cloudflare
-  // Pages → Settings → Environment variables to your Netlify site URL, e.g.
-  // https://rb-capital.netlify.app/). When unset it falls back to "/", which is
-  // correct when the site itself is served by Netlify or for local dev.
+  // This is a NATIVE form submission — no JavaScript fetch/AJAX. The browser POSTs
+  // the multipart/form-data body (pitch-deck file included) straight to Netlify,
+  // which reliably captures file uploads this way; an AJAX submission does not.
+  // Netlify stores the submission, emails the notification, then redirects to the
+  // form's `action` (/thank-you), which the SPA renders. The hidden detection form
+  // in index.html is what registers the "opportunity" form at build time.
   //
-  // A cross-origin multipart POST is CORS-safelisted, so the data reaches Netlify
-  // fine; we send it `no-cors` (the response is then opaque and unreadable, which
-  // is why success is inferred from the request not throwing). The mailto fallback
-  // in the error branch covers the rare network failure.
-  const ENDPOINT = import.meta.env.VITE_FORM_ENDPOINT || "/";
-  const CROSS_ORIGIN = /^https?:\/\//.test(ENDPOINT);
-
-  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setError(false);
-    setSending(true);
-    try {
-      const data = new FormData(e.currentTarget);
-      await fetch(ENDPOINT, {
-        method: "POST",
-        body: data,
-        // Cross-domain (Cloudflare → Netlify): opaque response, but the POST lands.
-        // Same-origin (Netlify-hosted / local): normal request.
-        ...(CROSS_ORIGIN ? { mode: "no-cors" as RequestMode } : {}),
-      });
-      setSent(true);
-    } catch {
-      setError(true);
-    } finally {
-      setSending(false);
-    }
-  };
-
+  // NOTE: no e.preventDefault — the page must actually navigate for Netlify to
+  // process the POST. The `form-name` hidden field must match the registered form.
   return (
     <>
       <section className="contact-hero">
@@ -65,32 +34,24 @@ export function Contact() {
         <div className="container contact-grid">
           {/* Form */}
           <div className="contact-form-wrap">
-            {!sent && (
-              <Reveal><h2 className="display display--md contact-form-title">{contact.form.heading}</h2></Reveal>
-            )}
-            {sent ? (
-              <Reveal className="contact-thanks">
-                <p className="display display--md">Thank you.</p>
-                <p className="lead">Your submission has been received in confidence. A member of our team will be in touch.</p>
-              </Reveal>
-            ) : (
-              <Reveal>
-                <form
-                  className="contact-form"
-                  name="opportunity"
-                  method="POST"
-                  data-netlify="true"
-                  data-netlify-honeypot="bot-field"
-                  encType="multipart/form-data"
-                  onSubmit={onSubmit}
-                >
-                  <input type="hidden" name="form-name" value="opportunity" />
-                  <p className="hidden-field" aria-hidden="true">
-                    <label>
-                      Do not fill this out: <input name="bot-field" tabIndex={-1} autoComplete="off" />
-                    </label>
-                  </p>
-                  <div className="field">
+            <Reveal><h2 className="display display--md contact-form-title">{contact.form.heading}</h2></Reveal>
+            <Reveal>
+              <form
+                className="contact-form"
+                name="opportunity"
+                method="POST"
+                action="/thank-you"
+                data-netlify="true"
+                data-netlify-honeypot="bot-field"
+                encType="multipart/form-data"
+              >
+                <input type="hidden" name="form-name" value="opportunity" />
+                <p className="hidden-field" aria-hidden="true">
+                  <label>
+                    Do not fill this out: <input name="bot-field" tabIndex={-1} autoComplete="off" />
+                  </label>
+                </p>
+                <div className="field">
                     <label htmlFor="name">{contact.form.fields.name}</label>
                     <input id="name" name="name" type="text" required />
                   </div>
@@ -120,23 +81,12 @@ export function Contact() {
                       <span className="upload__name">{fileName || "PDF or presentation, up to 25 MB"}</span>
                     </label>
                   </div>
-                  <button
-                    type="submit"
-                    className="btn btn--solid contact-form__submit"
-                    disabled={sending}
-                  >
-                    {sending ? "Submitting…" : contact.form.submit}
+                  <button type="submit" className="btn btn--solid contact-form__submit">
+                    {contact.form.submit}
                   </button>
-                  {error && (
-                    <p className="contact-form__error" role="alert">
-                      Something went wrong sending your submission. Please try again, or email{" "}
-                      <a href={`mailto:${company.email}`}>{company.email}</a> directly.
-                    </p>
-                  )}
                   <p className="contact-form__note">{contact.form.note}</p>
                 </form>
               </Reveal>
-            )}
           </div>
 
           {/* Details */}
