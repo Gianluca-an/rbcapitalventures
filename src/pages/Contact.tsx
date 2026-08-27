@@ -13,10 +13,10 @@ export function Contact() {
   // Pages, no server code). Submissions, including the pitch-deck attachment, are
   // POSTed to the Web3Forms API and emailed to the address tied to the access key.
   //
-  // Set VITE_WEB3FORMS_KEY in the host's build environment (Cloudflare Pages →
-  // Settings → Environment variables) to your Web3Forms access key. The key is
-  // public by design (get one free at web3forms.com), so it is safe in the client.
-  const ACCESS_KEY = import.meta.env.VITE_WEB3FORMS_KEY || "";
+  // The Web3Forms access key is public by design (it only routes submissions to
+  // the destination inbox), so it is safe in the client bundle. It can be
+  // overridden at build time with VITE_WEB3FORMS_KEY; otherwise this default is used.
+  const ACCESS_KEY = import.meta.env.VITE_WEB3FORMS_KEY || "83a9ff17-448e-4d1c-be69-8505ebac0a6d";
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
