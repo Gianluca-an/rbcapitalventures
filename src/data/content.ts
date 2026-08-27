@@ -162,27 +162,32 @@ export const assetClasses = {
     {
       title: "Growth Equity",
       body: "Growth capital for established and scaling businesses seeking to accelerate expansion, strengthen market position or prepare for their next institutional stage.",
-      caption: "Commercial architecture",
+      caption: "Corporate headquarters",
+      photo: "/images/asset-classes/growth.jpg",
     },
     {
       title: "Direct Investments",
       body: "Direct investment into private companies and projects where we see compelling fundamentals, aligned management and long-term value creation potential.",
-      caption: "Boardroom / interior",
+      caption: "Manufacturing facility",
+      photo: "/images/asset-classes/direct.jpg",
     },
     {
       title: "Pre-IPO & Strategic Growth",
       body: "Select private companies approaching significant institutional milestones, including potential public-market entry, strategic investment, consolidation or acquisition.",
       caption: "Financial district",
+      photo: "/images/asset-classes/preipo.jpg",
     },
     {
       title: "Project & Real Asset Investments",
       body: "Investment into established and development-stage projects where feasibility, commercial fundamentals and execution pathways have been demonstrated.",
-      caption: "Infrastructure / real asset",
+      caption: "Infrastructure — dam and data centre",
+      photo: "/images/asset-classes/project.jpg",
     },
     {
       title: "Co-Investments & Joint Ventures",
       body: "We selectively invest alongside family offices, institutional partners, operators and other aligned capital partners.",
-      caption: "Harbour / trade",
+      caption: "Boardroom",
+      photo: "/images/asset-classes/coinvest.jpg",
     },
   ],
 };

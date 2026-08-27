@@ -6,7 +6,13 @@ import { assetClasses } from "../data/content";
 export function AssetClasses() {
   return (
     <>
-      <PageHero eyebrow={assetClasses.hero.eyebrow} title={assetClasses.hero.title} caption={assetClasses.hero.caption} />
+      <PageHero
+        eyebrow={assetClasses.hero.eyebrow}
+        title={assetClasses.hero.title}
+        caption={assetClasses.hero.caption}
+        src="/images/asset-classes/hero.jpg"
+        alt="Architectural blueprint collage of asset types — offices, industry, infrastructure and real estate"
+      />
 
       <section className="section section--parchment">
         <div className="container container--narrow center">
@@ -18,7 +24,7 @@ export function AssetClasses() {
         {assetClasses.items.map((item, i) => (
           <div key={item.title} className={`altrow ${i % 2 === 1 ? "altrow--reversed" : ""}`}>
             <Reveal className="altrow__figure" as="figure">
-              <Photo caption={item.caption} tone={i % 2 === 1 ? "dark" : "light"} />
+              <Photo caption={item.caption} src={item.photo} tone={i % 2 === 1 ? "dark" : "light"} overlay={false} />
             </Reveal>
             <div className="altrow__text">
               <Reveal><span className="altrow__index">{String(i + 1).padStart(2, "0")}</span></Reveal>
