@@ -170,11 +170,11 @@
 @media (max-width: 760px) { .approach__row { grid-template-columns: 1fr; gap: 12px; padding: 26px 0; } }
 
 /* Leadership */
-.leaders { display: grid; grid-template-columns: repeat(2, 1fr); gap: clamp(30px, 4vw, 60px) clamp(30px, 5vw, 80px); }
+.leaders { display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(28px, 3vw, 44px) clamp(20px, 2.2vw, 34px); }
 .leader { }
 .leader__portrait { display: block; width: 100%; aspect-ratio: 4 / 5; padding: 0; border: 0; background: none; cursor: pointer; }
-.leader__head { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-top: 22px; }
-.leader__name { font-size: 25px; font-weight: 500; }
+.leader__head { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-top: 20px; }
+.leader__name { font-size: clamp(19px, 1.5vw, 22px); font-weight: 500; line-height: 1.15; }
 .leader__title { display: block; margin-top: 4px; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--brass); }
 .leader__social { display: flex; gap: 14px; color: var(--muted); padding-top: 6px; }
 .leader__social a { transition: color 0.25s; }
@@ -184,16 +184,17 @@
   max-height: 0; overflow: hidden; opacity: 0;
   transition: max-height 0.5s var(--ease), opacity 0.4s var(--ease), margin-top 0.4s var(--ease);
 }
-.leader.is-open .leader__bio { max-height: 340px; opacity: 1; margin-top: 16px; }
+.leader.is-open .leader__bio { max-height: 620px; opacity: 1; margin-top: 16px; }
 .leader__toggle {
   margin-top: 14px; background: none; border: 0; padding: 0;
   font-family: var(--sans); font-size: 12px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase;
   color: var(--ink); border-bottom: 1px solid var(--brass); padding-bottom: 3px; cursor: pointer;
 }
 @media (hover: hover) {
-  .leader:hover .leader__bio { max-height: 340px; opacity: 1; }
+  .leader:hover .leader__bio { max-height: 620px; opacity: 1; }
 }
-@media (max-width: 700px) { .leaders { grid-template-columns: 1fr; } }
+@media (max-width: 1040px) { .leaders { grid-template-columns: repeat(2, 1fr); gap: clamp(30px, 4vw, 52px) clamp(28px, 4vw, 56px); } }
+@media (max-width: 560px) { .leaders { grid-template-columns: 1fr; } }
 
 /* ---------------- Asset Classes: alternating rows ---------------- */
 .altrows { display: flex; flex-direction: column; }

@@ -19,10 +19,7 @@ function LeadershipCard({ person, index }: { person: (typeof leadership.people)[
         />
       </button>
       <div className="leader__head">
-        <div>
-          <h3 className="leader__name display">{person.name}</h3>
-          <span className="leader__title">{person.title}</span>
-        </div>
+        <h3 className="leader__name display">{person.name}</h3>
         <div className="leader__social">
           {person.linkedin && (
             <a href={person.linkedin} target="_blank" rel="noopener noreferrer" aria-label={`${person.name} on LinkedIn`}>
@@ -36,6 +33,7 @@ function LeadershipCard({ person, index }: { person: (typeof leadership.people)[
           )}
         </div>
       </div>
+      <span className="leader__title">{person.title}</span>
       <p className="leader__bio">{person.bio}</p>
       <button className="leader__toggle" onClick={() => setOpen((v) => !v)}>
         {open ? "Close" : "Read biography"}
@@ -47,7 +45,13 @@ function LeadershipCard({ person, index }: { person: (typeof leadership.people)[
 export function About() {
   return (
     <>
-      <PageHero eyebrow={about.hero.eyebrow} title={about.hero.title} caption={about.hero.caption} />
+      <PageHero
+        eyebrow={about.hero.eyebrow}
+        title={about.hero.title}
+        caption={about.hero.caption}
+        src="/images/about/about-hero.jpg"
+        alt="Architectural blueprint of a neoclassical Corinthian colonnade"
+      />
 
       {/* Firm statement */}
       <section className="section section--parchment">

@@ -8,16 +8,20 @@ export function PageHero({
   eyebrow,
   title,
   caption,
+  src,
+  alt,
   size = "lg",
 }: {
   eyebrow: string;
   title: string[];
   caption?: string;
+  src?: string;
+  alt?: string;
   size?: "lg" | "xl";
 }) {
   return (
     <section className={`pagehero pagehero--${size}`}>
-      <Photo caption={caption} tone="dark" className="pagehero__bg" />
+      <Photo caption={caption} src={src} alt={alt} tone="dark" className="pagehero__bg" />
       <div className="container pagehero__inner">
         <motion.span
           className="eyebrow pagehero__eyebrow"
