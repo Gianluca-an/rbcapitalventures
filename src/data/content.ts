@@ -306,6 +306,6 @@ export const contact = {
       upload: "Investment Materials / Pitch Deck",
     },
     submit: "Submit",
-    note: "Materials are handled in confidence. PDF or presentation, up to 25 MB.",
+    note: "Materials are handled in confidence.",
   },
 };
