@@ -1,5 +1,5 @@
 // ---------------------------------------------------------------------------
-// RB Capital Ventures — content model (all copy per the client brief)
+// RB Capital Ventures, content model (all copy per the client brief)
 // Photographic slots carry a `caption` describing the intended subject so the
 // placeholder reads correctly and the real image drops straight in.
 // ---------------------------------------------------------------------------
@@ -38,11 +38,11 @@ export const home = {
   hero: {
     eyebrow: "Private Investment Platform",
     title: ["Private Capital.", "Long-Term Perspective."],
-    caption: "Federal architecture — Washington, D.C.",
+    caption: "Federal architecture, Washington, D.C.",
     body:
-      "RB Capital Ventures is a private investment platform and family-office capital partner focused on growth equity, direct investments and select project opportunities across global private markets.",
+      "RB Capital Ventures is a private investment platform and family office partner focused on growth equity, direct investments and select projects in private markets.",
     body2:
-      "We partner with established businesses, management teams and project sponsors at important stages of growth — including select opportunities approaching pre-IPO, strategic investment and M&A.",
+      "We partner with established businesses, management teams and project sponsors at important stages of growth, including opportunities approaching pre-IPO, strategic investment and acquisition.",
   },
   pillars: {
     eyebrow: "How We Partner",
@@ -50,15 +50,15 @@ export const home = {
     items: [
       {
         title: "Growth Equity",
-        body: "Backing established and scaling businesses through their next phase of institutional growth.",
+        body: "Backing established and scaling businesses through their next phase of growth.",
       },
       {
         title: "Direct Investment",
-        body: "Investing directly into select private companies and projects with compelling fundamentals and long-term potential.",
+        body: "Investing directly into private companies and projects with strong fundamentals and long-term potential.",
       },
       {
         title: "Long-Term Partnerships",
-        body: "Working alongside management teams, family offices and institutional capital with alignment and a long-term perspective.",
+        body: "Working alongside management teams, family offices and institutional investors with genuine alignment and a long-term view.",
       },
     ],
   },
@@ -66,14 +66,14 @@ export const home = {
     eyebrow: "Selected Areas of Interest",
     heading: "A broad but selective mandate.",
     body:
-      "We invest across sectors where we believe durable, long-term structural opportunities exist — from infrastructure and energy to healthcare, technology and real assets.",
-    caption: "Harbour infrastructure — Baltimore, Maryland",
+      "We invest across sectors where we see lasting opportunities, from infrastructure and energy to healthcare, technology and real assets.",
+    caption: "Harbour infrastructure, Baltimore, Maryland",
   },
   aboutTransition: {
     eyebrow: "About RBCV",
     heading: "Independent thinking. Aligned capital.",
     body:
-      "A private investment platform operating within a broader family-office and private-capital ecosystem, investing with a long-term perspective where strong fundamentals, experienced leadership and clear strategic potential converge.",
+      "A private investment platform working within a broader family office and private capital network, investing for the long term where strong fundamentals, experienced leadership and clear potential come together.",
   },
   contactCta: {
     heading: "Start a conversation.",
@@ -86,12 +86,12 @@ export const about = {
   hero: {
     eyebrow: "About",
     title: ["Independent Thinking.", "Aligned Capital."],
-    caption: "Neoclassical colonnade — Washington, D.C.",
+    caption: "Neoclassical colonnade, Washington, D.C.",
   },
   body: [
-    "RB Capital Ventures is a private investment platform operating within a broader family-office and private-capital ecosystem. We work alongside management teams, project sponsors, family offices and institutional capital partners across select private-market opportunities.",
-    "We invest with a long-term perspective, seeking situations where strong fundamentals, experienced leadership and clear strategic potential converge. Our approach combines independent thinking, disciplined analysis and flexible capital.",
-    "We favour long-term relationships and selectively partner with businesses and projects where our capital, experience and network can contribute meaningfully to growth and value creation.",
+    "RB Capital Ventures is a private investment platform working within a broader family office and private capital network. We work alongside management teams, project sponsors, family offices and institutional partners across select private markets.",
+    "We invest for the long term, seeking situations where strong fundamentals, experienced leadership and clear potential come together. Our approach combines independent thinking, careful analysis and flexible capital.",
+    "We favour lasting relationships and partner selectively with businesses and projects where our capital, experience and network can contribute meaningfully to their growth.",
   ],
   approach: {
     eyebrow: "Our Approach",
@@ -154,33 +154,33 @@ export const assetClasses = {
   hero: {
     eyebrow: "How We Invest",
     title: ["Asset Classes"],
-    caption: "Limestone façade, Federal detail — Washington, D.C.",
+    caption: "Limestone façade, Federal detail, Washington, D.C.",
   },
   intro:
-    "RB Capital Ventures invests selectively across private markets, with a focus on opportunities where patient capital and strategic alignment can support the next stage of value creation.",
+    "RB Capital Ventures invests selectively across private markets, focusing on opportunities where the right capital and a strong partnership can support the next stage of growth.",
   items: [
     {
       title: "Growth Equity",
-      body: "Growth capital for established and scaling businesses seeking to accelerate expansion, strengthen market position or prepare for their next institutional stage.",
+      body: "Growth capital for established and scaling businesses seeking to accelerate expansion, strengthen their market position or prepare for their next stage of growth.",
       caption: "Corporate headquarters",
       photo: "/images/asset-classes/growth.jpg",
     },
     {
       title: "Direct Investments",
-      body: "Direct investment into private companies and projects where we see compelling fundamentals, aligned management and long-term value creation potential.",
+      body: "Direct investment into private companies and projects where we see strong fundamentals, aligned management and long-term potential.",
       caption: "Manufacturing facility",
       photo: "/images/asset-classes/direct.jpg",
     },
     {
       title: "Pre-IPO & Strategic Growth",
-      body: "Select private companies approaching significant institutional milestones, including potential public-market entry, strategic investment, consolidation or acquisition.",
+      body: "Select private companies approaching major milestones, including a possible public listing, strategic investment, consolidation or acquisition.",
       caption: "Financial district",
       photo: "/images/asset-classes/preipo.jpg",
     },
     {
       title: "Project & Real Asset Investments",
-      body: "Investment into established and development-stage projects where feasibility, commercial fundamentals and execution pathways have been demonstrated.",
-      caption: "Infrastructure — dam and data centre",
+      body: "Investment into established and development-stage projects where feasibility, commercial fundamentals and a clear route to delivery have been demonstrated.",
+      caption: "Infrastructure, dam and data centre",
       photo: "/images/asset-classes/project.jpg",
     },
     {
@@ -197,10 +197,10 @@ export const sectors = {
   hero: {
     eyebrow: "Sectors",
     title: ["Areas of Interest"],
-    caption: "Chesapeake harbour, industrial heritage — Baltimore, MD",
+    caption: "Chesapeake harbour, industrial heritage, Baltimore, MD",
   },
   intro:
-    "RB Capital Ventures maintains a broad but selective investment mandate across sectors where we believe long-term structural opportunities exist.",
+    "RB Capital Ventures invests across a broad but selective range of sectors where we see lasting opportunities.",
   items: [
     {
       title: "Infrastructure, Commodities & Energy",
@@ -216,7 +216,7 @@ export const sectors = {
     },
     {
       title: "Healthcare & Life Sciences",
-      body: "Healthcare, MedTech and biotechnology companies with clear commercial pathways.",
+      body: "Healthcare, MedTech and biotechnology companies with clear routes to market.",
       caption: "Life sciences",
       photo: "/images/sectors/healthcare.jpg",
     },
@@ -248,10 +248,10 @@ export const criteria = {
   hero: {
     eyebrow: "Investment Criteria",
     title: ["What Makes an", "Opportunity Relevant"],
-    caption: "Federal symmetry — Washington, D.C.",
+    caption: "Federal symmetry, Washington, D.C.",
   },
   intro:
-    "We focus on businesses and projects with established fundamentals and a clear pathway to institutional growth.",
+    "We focus on businesses and projects with proven fundamentals and a clear path to their next stage of growth.",
   items: [
     {
       title: "Stage",
@@ -259,15 +259,15 @@ export const criteria = {
     },
     {
       title: "Growth Equity",
-      body: "Businesses seeking capital to expand operations, enter new markets, pursue strategic growth or strengthen their position ahead of a future institutional transaction.",
+      body: "Businesses seeking capital to expand operations, enter new markets, pursue growth or strengthen their position ahead of a future transaction.",
     },
     {
       title: "Pre-IPO & Pre-M&A",
-      body: "We are particularly interested in select companies approaching strategic inflection points, including preparation for public-market entry, institutional investment, consolidation or potential M&A.",
+      body: "We are particularly interested in select companies approaching important turning points, including preparation for a public listing, institutional investment, consolidation or acquisition.",
     },
     {
       title: "Projects",
-      body: "Projects with demonstrated feasibility, credible sponsors, identifiable commercial demand and a clear pathway to execution.",
+      body: "Projects with demonstrated feasibility, credible sponsors, identifiable demand and a clear route to delivery.",
     },
     {
       title: "Management",
@@ -282,7 +282,7 @@ export const criteria = {
   structures: {
     title: "Investment Structures",
     body: "Direct investment, growth equity, co-investment, joint venture and other appropriately structured private-market opportunities.",
-    note: "Investment parameters vary according to opportunity, structure and strategic fit.",
+    note: "Investment terms vary according to the opportunity, its structure and strategic fit.",
   },
 };
 

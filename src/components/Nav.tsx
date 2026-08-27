@@ -17,7 +17,7 @@ export function Nav() {
   return (
     <header className={`nav ${scrolled ? "nav--solid" : ""}`}>
       <div className="nav__inner container">
-        <Link to="/" className="nav__brand" aria-label={`${company_name} — home`} onClick={() => setOpen(false)}>
+        <Link to="/" className="nav__brand" aria-label={`${company_name} home`} onClick={() => setOpen(false)}>
           <Logo variant={scrolled ? "dark" : "light"} />
         </Link>
 

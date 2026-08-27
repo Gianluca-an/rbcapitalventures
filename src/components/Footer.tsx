@@ -42,7 +42,7 @@ export function Footer() {
       <hr className="rule footer__rule" />
 
       <div className="container footer__bar">
-        <span className="footer__copy">© {company.year} — {company.legalName} | All Rights Reserved</span>
+        <span className="footer__copy">© {company.year} {company.legalName}. All rights reserved.</span>
         <div className="footer__meta">
           <Link to="/contact" className="footer__meta-link">Contact</Link>
           <a

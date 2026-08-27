@@ -11,7 +11,7 @@ export function AssetClasses() {
         title={assetClasses.hero.title}
         caption={assetClasses.hero.caption}
         src="/images/asset-classes/hero.jpg"
-        alt="Architectural blueprint collage of asset types — offices, industry, infrastructure and real estate"
+        alt="Architectural blueprint collage of asset types including offices, industry, infrastructure and real estate"
       />
 
       <section className="section section--parchment">

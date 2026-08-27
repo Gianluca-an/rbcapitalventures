@@ -16,7 +16,7 @@ export function Home() {
         <Photo
           caption={hero.caption}
           src="/images/home/hero-dc.jpg"
-          alt="Architectural rendering of the Washington, D.C. skyline — the United States Capitol, Washington Monument and Lincoln Memorial"
+          alt="Architectural rendering of the Washington, D.C. skyline with the United States Capitol, Washington Monument and Lincoln Memorial"
           tone="dark"
           className="home-hero__bg"
         />
@@ -70,8 +70,8 @@ export function Home() {
           <Reveal>
             <p className="statement display display--md">
               We partner with established businesses, management teams and project sponsors at important
-              stages of growth — including select opportunities approaching{" "}
-              <span className="italic">pre-IPO, strategic investment and M&amp;A.</span>
+              stages of growth, including opportunities approaching{" "}
+              <span className="italic">pre-IPO, strategic investment and acquisition.</span>
             </p>
           </Reveal>
         </div>
@@ -130,7 +130,7 @@ export function Home() {
             <Photo
             caption="London skyline"
             src="/images/home/about-london.jpg"
-            alt="Architectural rendering of the London skyline — Big Ben, St Paul's Cathedral and Tower Bridge"
+            alt="Architectural rendering of the London skyline with Big Ben, St Paul's Cathedral and Tower Bridge"
             tone="light"
             overlay={false}
           />
