@@ -5,7 +5,13 @@ import { criteria } from "../data/content";
 export function Criteria() {
   return (
     <>
-      <PageHero eyebrow={criteria.hero.eyebrow} title={criteria.hero.title} caption={criteria.hero.caption} />
+      <PageHero
+        eyebrow={criteria.hero.eyebrow}
+        title={criteria.hero.title}
+        caption={criteria.hero.caption}
+        src="/images/criteria/hero.jpg"
+        alt="Architectural blueprint of an executive study overlooking a city skyline"
+      />
 
       <section className="section section--parchment">
         <div className="container container--narrow center">
@@ -34,7 +40,7 @@ export function Criteria() {
       </section>
 
       {/* Geography */}
-      <section className="section section--stone">
+      <section className="section section--stone geography-band">
         <div className="container geography">
           <div className="geography__text">
             <Reveal><span className="eyebrow">Geography</span></Reveal>

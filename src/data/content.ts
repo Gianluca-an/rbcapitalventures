@@ -206,31 +206,37 @@ export const sectors = {
       title: "Infrastructure, Commodities & Energy",
       body: "Including conventional energy (oil & gas), infrastructure-led opportunities and the sale and purchase of precious metals.",
       caption: "Energy & infrastructure",
+      photo: "/images/sectors/infra.jpg",
     },
     {
       title: "Renewable Energy & Clean Technology",
       body: "Energy transition, clean technology and commercially proven renewable platforms.",
       caption: "Renewable energy",
+      photo: "/images/sectors/renewable.jpg",
     },
     {
       title: "Healthcare & Life Sciences",
       body: "Healthcare, MedTech and biotechnology companies with clear commercial pathways.",
       caption: "Life sciences",
+      photo: "/images/sectors/healthcare.jpg",
     },
     {
       title: "Industrial & Manufacturing",
       body: "Industrial businesses, data centres, manufacturing platforms and enabling infrastructure.",
       caption: "Industrial & manufacturing",
+      photo: "/images/sectors/industrial.jpg",
     },
     {
       title: "Technology, AI & Digital Infrastructure",
       body: "Technology, artificial intelligence, cloud and digital-infrastructure projects.",
       caption: "Digital infrastructure",
+      photo: "/images/sectors/technology.jpg",
     },
     {
       title: "Real Estate & Hospitality",
       body: "Select real estate, hospitality and mixed-use opportunities with strong underlying fundamentals.",
       caption: "Real estate & hospitality",
+      photo: "/images/sectors/realestate.jpg",
     },
   ],
   note:

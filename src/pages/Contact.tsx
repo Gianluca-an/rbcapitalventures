@@ -81,7 +81,7 @@ export function Contact() {
                         onChange={(e) => setFileName(e.target.files?.[0]?.name ?? "")}
                       />
                       <span className="upload__btn">Choose file</span>
-                      <span className="upload__name">{fileName || "PDF or presentation, up to 25 MB"}</span>
+                      <span className="upload__name">{fileName || "PDF OF EXECUTIVE SUMMARY OR PRESENTATION, UP TO 25 MB"}</span>
                     </label>
                   </div>
                   <button type="submit" className="btn btn--solid contact-form__submit">

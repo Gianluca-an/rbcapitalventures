@@ -26,7 +26,7 @@ export function Sectors() {
             {sectors.items.map((s, i) => (
               <Reveal key={s.title} delay={0.05 * (i % 3)} className="sector-tile" as="figure">
                 <div className="sector-tile__img">
-                  <Photo caption={s.caption} tone="dark" />
+                  <Photo caption={s.caption} src={s.photo} tone="dark" overlay={false} />
                 </div>
                 <h3 className="sector-tile__title display display--md">{s.title}</h3>
                 <p className="sector-tile__body">{s.body}</p>

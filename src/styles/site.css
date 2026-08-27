@@ -244,6 +244,17 @@
 }
 @media (max-width: 860px) { .geography__regions { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 520px) { .geography__regions { grid-template-columns: 1fr; } }
+/* World-map backdrop behind the geography band; parchment wash keeps text legible */
+.geography-band {
+  position: relative;
+  background-image:
+    linear-gradient(90deg, rgba(231, 224, 211, 0.95) 0%, rgba(231, 224, 211, 0.78) 48%, rgba(231, 224, 211, 0.64) 100%),
+    url("/images/criteria/geography.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.geography-band > .container { position: relative; z-index: 1; }
 
 .structures__heading { color: #fff; margin-top: 18px; line-height: 1.3; }
 .structures__note { margin: 22px auto 0; color: #cfc9bc; }
