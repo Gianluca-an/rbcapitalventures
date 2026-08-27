@@ -234,7 +234,7 @@ export const sectors = {
     },
   ],
   note:
-    "We also consider opportunities outside these sectors where there is a compelling strategic rationale and strong alignment with our investment approach.",
+    "We consider opportunities outside these sectors where there is a compelling strategic rationale and strong alignment with our investment approach.",
 };
 
 // ---------------------------------------------------------------- Investment Criteria

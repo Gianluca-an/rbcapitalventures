@@ -6,7 +6,13 @@ import { sectors } from "../data/content";
 export function Sectors() {
   return (
     <>
-      <PageHero eyebrow={sectors.hero.eyebrow} title={sectors.hero.title} caption={sectors.hero.caption} />
+      <PageHero
+        eyebrow={sectors.hero.eyebrow}
+        title={sectors.hero.title}
+        caption={sectors.hero.caption}
+        src="/images/sectors/hero.jpg"
+        alt="Architectural blueprint of a life-sciences laboratory interior"
+      />
 
       <section className="section section--parchment">
         <div className="container container--narrow center">
