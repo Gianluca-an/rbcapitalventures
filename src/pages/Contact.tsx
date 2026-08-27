@@ -11,9 +11,12 @@ export function Contact() {
   // This is a NATIVE form submission — no JavaScript fetch/AJAX. The browser POSTs
   // the multipart/form-data body (pitch-deck file included) straight to Netlify,
   // which reliably captures file uploads this way; an AJAX submission does not.
-  // Netlify stores the submission, emails the notification, then redirects to the
-  // form's `action` (/thank-you), which the SPA renders. The hidden detection form
-  // in index.html is what registers the "opportunity" form at build time.
+  //
+  // The action points at /thank-you.html — a REAL static file in public/, NOT a
+  // React route. This matters: the SPA catch-all rewrite (/* -> /index.html) would
+  // otherwise swallow the POST and 400. A real file is served directly, so Netlify
+  // processes the submission, then redirects there. The hidden detection form in
+  // index.html registers the "opportunity" form at build time.
   //
   // NOTE: no e.preventDefault — the page must actually navigate for Netlify to
   // process the POST. The `form-name` hidden field must match the registered form.
@@ -40,7 +43,7 @@ export function Contact() {
                 className="contact-form"
                 name="opportunity"
                 method="POST"
-                action="/thank-you"
+                action="/thank-you.html"
                 data-netlify="true"
                 data-netlify-honeypot="bot-field"
                 encType="multipart/form-data"

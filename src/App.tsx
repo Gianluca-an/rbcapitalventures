@@ -6,7 +6,6 @@ import { AssetClasses } from "./pages/AssetClasses";
 import { Sectors } from "./pages/Sectors";
 import { Criteria } from "./pages/Criteria";
 import { Contact } from "./pages/Contact";
-import { ThankYou } from "./pages/ThankYou";
 
 export default function App() {
   return (
@@ -18,7 +17,6 @@ export default function App() {
         <Route path="/sectors" element={<Sectors />} />
         <Route path="/investment-criteria" element={<Criteria />} />
         <Route path="/contact" element={<Contact />} />
-        <Route path="/thank-you" element={<ThankYou />} />
         <Route path="*" element={<Home />} />
       </Route>
     </Routes>
