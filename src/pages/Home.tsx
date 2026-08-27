@@ -13,7 +13,13 @@ export function Home() {
     <>
       {/* ---------------- Hero ---------------- */}
       <section className="home-hero">
-        <Photo caption={hero.caption} tone="dark" className="home-hero__bg" />
+        <Photo
+          caption={hero.caption}
+          src="/images/home/hero-dc.jpg"
+          alt="Architectural rendering of the Washington, D.C. skyline — the United States Capitol, Washington Monument and Lincoln Memorial"
+          tone="dark"
+          className="home-hero__bg"
+        />
         <div className="container home-hero__inner">
           <motion.span
             className="eyebrow home-hero__eyebrow"
@@ -92,7 +98,13 @@ export function Home() {
 
       {/* ---------------- Sectors teaser (full-bleed) ---------------- */}
       <section className="fullbleed">
-        <Photo caption={sectorsTeaser.caption} tone="dark" className="fullbleed__bg" />
+        <Photo
+          caption={sectorsTeaser.caption}
+          src="/images/home/sectors-baltimore.jpg"
+          alt="Architectural rendering of the Baltimore Inner Harbour skyline and the Chesapeake lightship"
+          tone="dark"
+          className="fullbleed__bg"
+        />
         <div className="container fullbleed__inner">
           <Reveal><span className="eyebrow">{sectorsTeaser.eyebrow}</span></Reveal>
           <Reveal delay={0.05}><h2 className="display display--lg fullbleed__title">{sectorsTeaser.heading}</h2></Reveal>
@@ -115,7 +127,13 @@ export function Home() {
             </Reveal>
           </div>
           <Reveal delay={0.1} className="about-transition__figure" as="figure">
-            <Photo caption="Beaux-Arts detail — Baltimore, MD" tone="light" />
+            <Photo
+            caption="London skyline"
+            src="/images/home/about-london.jpg"
+            alt="Architectural rendering of the London skyline — Big Ben, St Paul's Cathedral and Tower Bridge"
+            tone="light"
+            overlay={false}
+          />
           </Reveal>
         </div>
       </section>
