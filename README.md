@@ -26,36 +26,35 @@ npm run build    # production build -> dist/
 npm run preview  # preview the production build
 ```
 
-## Deployment — hosted on Netlify
+## Deployment — hosted on Cloudflare Pages
 
-The live site is hosted on **Netlify**. `npm run build` emits a static site to `dist/`; config is
-included so importing the repo needs no manual setup:
-- **`netlify.toml`** — build command (`npm run build`) + publish dir (`dist`)
-- **`public/_redirects`** — SPA fallback so deep links (`/about`, `/sectors`, …) resolve
+The live site is hosted on **Cloudflare Pages**. `npm run build` emits a static site to `dist/`:
+- **`public/_redirects`** — SPA fallback so deep links (`/about`, `/sectors`, …) resolve (Cloudflare
+  Pages reads this file too).
 
-**To deploy:** on Netlify, *Add new project → import this repo*. Netlify reads `netlify.toml`, builds,
-and publishes. Add the custom domain under *Domain management* (free SSL is automatic).
+**To deploy:** in Cloudflare Pages, create a project from this repo with build command
+`npm run build` and output directory `dist`. Add the custom domain in the project's *Custom domains*
+tab (free SSL is automatic). Set the form key env var below before the first build.
 
-### Contact form (Netlify Forms — native)
+### Contact form (Web3Forms — free, host-agnostic)
 
-The contact form is handled by **Netlify Forms**: no third-party service, no paid plan, and the
-pitch-deck file is stored with each submission. Because the site is hosted on Netlify, the form
-posts **same-origin** and works with no extra configuration. How it's wired:
+The contact form is handled by **Web3Forms**: free, no server code, works on any host, and the
+pitch-deck file rides along as an attachment. `src/pages/Contact.tsx` POSTs the submission (via
+`fetch`) to `https://api.web3forms.com/submit`; Web3Forms emails it to the address tied to the
+access key.
 
-- A hidden static detection form in `index.html` registers the `opportunity` form. **Netlify's
-  form detection must be enabled** (Project → Forms → *Enable form detection*) and then a deploy
-  run so it scans the HTML — after that the form appears under *Forms*.
-- `src/pages/Contact.tsx` POSTs the submission as `multipart/form-data`. The POST target is
-  `VITE_FORM_ENDPOINT` if set, else `/` — and on a Netlify-hosted site `/` is exactly right, so
-  the variable is left unset.
-- **Notifications:** Project → Forms → *Form notifications* → add the recipient email(s) (e.g.
-  `info@rbcapitalventures.com`). Recipients need no Netlify login. Enable spam filtering / reCAPTCHA
-  there before launch.
+**Setup:**
+1. Get a free access key at [web3forms.com](https://web3forms.com) (enter the destination inbox,
+   e.g. `info@rbcapitalventures.com`; the key arrives by email). The key is public by design.
+2. In **Cloudflare Pages → Settings → Environment variables**, add
+   `VITE_WEB3FORMS_KEY` = that key, then redeploy. (Vite bakes `VITE_`-prefixed vars in at build
+   time.)
+3. Submissions arrive at the key's inbox. Add more recipients / spam filtering in the Web3Forms
+   dashboard.
 
-*Portability:* if the site is ever moved to a non-Netlify host (Cloudflare Pages, etc.), the same
-form still works by setting `VITE_FORM_ENDPOINT` to a companion Netlify deploy's URL (the code then
-cross-posts via a `no-cors` request), or by repointing it at **Web3Forms** / **Formspree** and
-removing the hidden form. See the comment in `src/pages/Contact.tsx`.
+Notes: a hidden `botcheck` honeypot guards against spam. Web3Forms caps attachment size on the free
+plan, so very large decks may bounce — normal pitch decks are fine, and the error state points
+senders to the enquiries email as a fallback.
 
 ## Photography (client to provide)
 

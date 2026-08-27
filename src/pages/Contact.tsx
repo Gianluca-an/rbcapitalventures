@@ -4,22 +4,40 @@ import { LinkedInIcon } from "../components/icons";
 import { company, contact } from "../data/content";
 
 export function Contact() {
+  const [sent, setSent] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState(false);
   const [fileName, setFileName] = useState("");
 
-  // Backend: Netlify Forms (site is hosted on Netlify, so this posts same-origin).
+  // Contact form backend: Web3Forms (free, host-agnostic — works on Cloudflare
+  // Pages, no server code). Submissions, including the pitch-deck attachment, are
+  // POSTed to the Web3Forms API and emailed to the address tied to the access key.
   //
-  // This is a NATIVE form submission — no JavaScript fetch/AJAX. The browser POSTs
-  // the multipart/form-data body (pitch-deck file included) straight to Netlify,
-  // which reliably captures file uploads this way; an AJAX submission does not.
-  //
-  // The action points at /thank-you.html — a REAL static file in public/, NOT a
-  // React route. This matters: the SPA catch-all rewrite (/* -> /index.html) would
-  // otherwise swallow the POST and 400. A real file is served directly, so Netlify
-  // processes the submission, then redirects there. The hidden detection form in
-  // index.html registers the "opportunity" form at build time.
-  //
-  // NOTE: no e.preventDefault — the page must actually navigate for Netlify to
-  // process the POST. The `form-name` hidden field must match the registered form.
+  // Set VITE_WEB3FORMS_KEY in the host's build environment (Cloudflare Pages →
+  // Settings → Environment variables) to your Web3Forms access key. The key is
+  // public by design (get one free at web3forms.com), so it is safe in the client.
+  const ACCESS_KEY = import.meta.env.VITE_WEB3FORMS_KEY || "";
+
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setError(false);
+    setSending(true);
+    try {
+      const data = new FormData(e.currentTarget);
+      data.append("access_key", ACCESS_KEY);
+      data.append("subject", "New opportunity submission via rbcapitalventures.com");
+      data.append("from_name", "RB Capital Ventures Website");
+      const res = await fetch("https://api.web3forms.com/submit", { method: "POST", body: data });
+      const json = await res.json();
+      if (json.success) setSent(true);
+      else throw new Error(json.message || "submission failed");
+    } catch {
+      setError(true);
+    } finally {
+      setSending(false);
+    }
+  };
+
   return (
     <>
       <section className="contact-hero">
@@ -37,30 +55,37 @@ export function Contact() {
         <div className="container contact-grid">
           {/* Form */}
           <div className="contact-form-wrap">
-            <Reveal><h2 className="display display--md contact-form-title">{contact.form.heading}</h2></Reveal>
-            <Reveal>
-              <form
-                className="contact-form"
-                name="opportunity"
-                method="POST"
-                action="/thank-you.html"
-                data-netlify="true"
-                data-netlify-honeypot="bot-field"
-                encType="multipart/form-data"
-              >
-                <input type="hidden" name="form-name" value="opportunity" />
-                <p className="hidden-field" aria-hidden="true">
-                  <label>
-                    Do not fill this out: <input name="bot-field" tabIndex={-1} autoComplete="off" />
-                  </label>
-                </p>
-                <div className="field">
+            {!sent && (
+              <Reveal><h2 className="display display--md contact-form-title">{contact.form.heading}</h2></Reveal>
+            )}
+            {sent ? (
+              <Reveal className="contact-thanks">
+                <p className="display display--md">Thank you.</p>
+                <p className="lead">Your submission has been received in confidence. A member of our team will be in touch.</p>
+              </Reveal>
+            ) : (
+              <Reveal>
+                <form className="contact-form" onSubmit={onSubmit}>
+                  {/* Web3Forms honeypot: bots tick this hidden box; real people never see it. */}
+                  <input
+                    type="checkbox"
+                    name="botcheck"
+                    className="hidden-field"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    aria-hidden="true"
+                  />
+                  <div className="field">
                     <label htmlFor="name">{contact.form.fields.name}</label>
                     <input id="name" name="name" type="text" required />
                   </div>
                   <div className="field">
                     <label htmlFor="company">{contact.form.fields.company}</label>
                     <input id="company" name="company" type="text" />
+                  </div>
+                  <div className="field">
+                    <label htmlFor="phone">{contact.form.fields.phone}</label>
+                    <input id="phone" name="phone" type="tel" autoComplete="tel" />
                   </div>
                   <div className="field">
                     <label htmlFor="email">{contact.form.fields.email}</label>
@@ -75,7 +100,7 @@ export function Contact() {
                     <label className="upload">
                       <input
                         id="deck"
-                        name="deck"
+                        name="attachment"
                         type="file"
                         accept=".pdf,.ppt,.pptx,.key"
                         onChange={(e) => setFileName(e.target.files?.[0]?.name ?? "")}
@@ -84,12 +109,23 @@ export function Contact() {
                       <span className="upload__name">{fileName || "PDF OF EXECUTIVE SUMMARY OR PRESENTATION, UP TO 25 MB"}</span>
                     </label>
                   </div>
-                  <button type="submit" className="btn btn--solid contact-form__submit">
-                    {contact.form.submit}
+                  <button
+                    type="submit"
+                    className="btn btn--solid contact-form__submit"
+                    disabled={sending}
+                  >
+                    {sending ? "Submitting…" : contact.form.submit}
                   </button>
+                  {error && (
+                    <p className="contact-form__error" role="alert">
+                      Something went wrong sending your submission. Please try again, or email{" "}
+                      <a href={`mailto:${company.email}`}>{company.email}</a> directly.
+                    </p>
+                  )}
                   <p className="contact-form__note">{contact.form.note}</p>
                 </form>
               </Reveal>
+            )}
           </div>
 
           {/* Details */}

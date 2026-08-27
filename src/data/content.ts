@@ -301,6 +301,7 @@ export const contact = {
     fields: {
       name: "Name",
       company: "Company / Organisation",
+      phone: "Phone",
       email: "Email",
       overview: "Opportunity Overview",
       upload: "Investment Materials / Pitch Deck",
