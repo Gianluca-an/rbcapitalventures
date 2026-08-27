@@ -7,7 +7,7 @@ import { company } from "../data/content";
 export function Logo({ variant = "dark" }: { variant?: "dark" | "light" }) {
   return (
     <span className={`logo logo--${variant}`} aria-label={company.legalName}>
-      <span className="logo__mark" aria-hidden="true">RB</span>
+      <img className="logo__mark" src="/images/logo-mark.png" alt="" aria-hidden="true" />
       <span className="logo__word">RB Capital Ventures</span>
     </span>
   );

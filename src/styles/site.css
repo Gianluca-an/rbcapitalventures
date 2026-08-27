@@ -6,13 +6,10 @@
 /* ---------------- Logo ---------------- */
 .logo { display: inline-flex; align-items: center; gap: 13px; }
 .logo__mark {
-  font-family: var(--serif);
-  font-weight: 600;
-  font-size: 15px;
-  letter-spacing: 0.04em;
-  width: 34px; height: 34px;
-  display: inline-flex; align-items: center; justify-content: center;
-  border: 1px solid currentColor;
+  width: 36px; height: 36px;
+  display: inline-block;
+  object-fit: contain;
+  flex-shrink: 0;
 }
 .logo__word {
   font-family: var(--serif);
