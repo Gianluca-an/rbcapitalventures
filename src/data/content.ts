@@ -6,14 +6,14 @@
 
 export const company = {
   name: "RB Capital Ventures",
-  legalName: "RB Capital Ventures Ltd.",
+  legalName: "RB Capital Ventures",
   email: "info@rbcapitalventures.com",
   linkedin: "https://www.linkedin.com/company/rb-capital-ventures",
   registration: "TC.054296",
   offices: {
     registered: {
       label: "Registered Office",
-      lines: ["RB Capital Ventures Ltd.", "82 Cherokee Road, P.O. Box 908", "Providenciales", "Turks and Caicos Islands"],
+      lines: ["RB Capital Ventures", "82 Cherokee Road, P.O. Box 908", "Providenciales", "Turks and Caicos Islands"],
       note: "Registration and Financial Services Number: TC.054296",
     },
     us: {
