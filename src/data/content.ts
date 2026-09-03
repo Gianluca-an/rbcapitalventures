@@ -116,8 +116,8 @@ export const leadership = {
   people: [
     {
       name: "Rosalyn Bronstein",
-      title: "Managing Director",
-      bio: "Rosalyn Bronstein is Managing Director of RB Capital Ventures and leads the firm's investment strategy and activities across private markets. She brings more than three decades of investment, management consulting and international business experience, with particular expertise across energy, infrastructure, environmental markets and cross-border investment.",
+      title: "President",
+      bio: "Rosalyn Bronstein is the Managing Director and President of RB Capital Ventures and leads the firm's investment strategy and activities across private markets. She brings more than three decades of investment, management consulting and international business experience, with particular expertise across energy, infrastructure, environmental markets and cross-border investment.",
       linkedin: "https://www.linkedin.com/in/rosalyn-bronstein/",
       email: "",
       photo: "/images/leadership/rosalyn-bronstein.jpg",
